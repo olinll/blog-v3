@@ -141,6 +141,9 @@ img {
 .bikariya-overlay {
 	position: fixed;
 	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: #0003;
 	backdrop-filter: blur(4px);
 

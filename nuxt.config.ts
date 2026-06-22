@@ -59,6 +59,7 @@ export default defineNuxtConfig({
 		'@/assets/css/animation.scss',
 		'@/assets/css/article.scss',
 		'@/assets/css/color.scss',
+		'@/assets/css/editor.scss',
 		'@/assets/css/font.scss',
 		'@/assets/css/main.scss',
 		'@/assets/css/reusable.scss',
@@ -87,6 +88,7 @@ export default defineNuxtConfig({
 		...mapValues(redirectList, to => ({ redirect: { to, statusCode: 308 as const } })),
 		'/api/stats': { prerender: true, headers: { 'Content-Type': 'application/json' } },
 		'/atom.xml': { prerender: true, headers: { 'Content-Type': 'application/xml' } },
+		'/editor': { prerender: true, ssr: false },
 		'/favicon.ico': { redirect: { to: blogConfig.favicon } },
 		'/subscriptions.opml': { prerender: true, headers: { 'Content-Type': 'application/xml' } },
 	},
@@ -117,6 +119,14 @@ export default defineNuxtConfig({
 	},
 
 	vite: {
+		worker: {
+			format: 'es',
+		},
+		build: {
+			rollupOptions: {
+				external: [/^rolldown/],
+			},
+		},
 		css: {
 			preprocessorOptions: {
 				scss: {
@@ -132,7 +142,7 @@ export default defineNuxtConfig({
 		},
 		optimizeDeps: {
 			// @keep-sorted
-			include: ['@shikijs/colorized-brackets', '@shikijs/transformers', '@unhead/schema-org/vue', '@vue/devtools-core', '@vue/devtools-kit', 'abcjs', 'embla-carousel-autoplay', 'embla-carousel-vue', 'embla-carousel-wheel-gestures', 'es-toolkit/array', 'es-toolkit/math', 'es-toolkit/object', 'es-toolkit/promise', 'es-toolkit/string', 'minisearch', 'parse-domain', 'plain-shiki', 'shiki/themes/catppuccin-latte.mjs', 'shiki/themes/one-dark-pro.mjs', 'temporal-polyfill', 'vue-tippy'],
+			include: ['@shikijs/colorized-brackets', '@shikijs/transformers', '@unhead/schema-org/vue', '@vue/devtools-core', '@vue/devtools-kit', 'abcjs', 'embla-carousel-autoplay', 'embla-carousel-vue', 'embla-carousel-wheel-gestures', 'es-toolkit/array', 'es-toolkit/math', 'es-toolkit/object', 'es-toolkit/promise', 'es-toolkit/string', 'minisearch', 'parse-domain', 'plain-shiki', 'rehype-katex', 'remark-math', 'remark-reading-time', 'shiki', 'shiki/themes/catppuccin-latte.mjs', 'shiki/themes/one-dark-pro.mjs', 'temporal-polyfill', 'vue-codemirror', 'vue-sonner', 'vue-tippy'],
 		},
 		server: {
 			allowedHosts: true,
@@ -155,6 +165,7 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'nuxt-llms',
 		'unplugin-yaml/nuxt',
+		'vue-sonner/nuxt',
 	],
 
 	colorMode: {

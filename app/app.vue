@@ -12,6 +12,9 @@
 </div>
 <BlogPanel />
 <BikariyaModals />
+<ClientOnly>
+	<Toaster position="top-right" :duration="3000" />
+</ClientOnly>
 </template>
 
 <!-- eslint-disable-next-line vue/enforce-style-attribute -->
