@@ -2,6 +2,7 @@
 <NuxtLoadingIndicator />
 <NuxtRouteAnnouncer :style="{ position: 'absolute' }" />
 <BlogSkipToContent />
+<BlogBanner />
 <BlogSidebar />
 <div id="content">
 	<main id="main-content">
