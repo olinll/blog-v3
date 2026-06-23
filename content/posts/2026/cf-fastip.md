@@ -59,7 +59,7 @@ caption: 优选后 ITDOG IP数量
 
 ### 使用优选域名
 
-直接使用 [https://cf.090227.xyz](https://cf.090227.xyz)，官方推荐优先使用自定义前缀的泛域名，例如 `123.cf.090227.xyz`。
+这里使用 :tip[xxx.cf.090227.xyz]{copy icon="tabler:copy" tip="复制下方内容"}，官方推荐优先使用自定义前缀的泛域名，例如 `123.cf.090227.xyz`。
 
 随后在你的域名 DNS 记录里添加一条 CNAME 记录，**不要开启小黄云**。
 
