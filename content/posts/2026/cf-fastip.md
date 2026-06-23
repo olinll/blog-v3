@@ -3,21 +3,21 @@ title: 使用CloudFlare优选任何网站！
 description: 通过 Worker 反代为网站做 IP 分流优选，提高国内访问速度与可用性
 date: 2026-06-13 19:54:38
 updated: 2026-06-21 16:57:55
-image: https://assets.olinl.com/images/cover/cf-fastip.webp
+image: https://oss.olinl.com/cover/cf-fastip.webp
 categories: [网络]
 tags: [CloudFlare,Vercel,优选]
 ---
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_5jfq.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_5jfq.webp
 caption: 优选前 ITDOG IP数量
 ---
 ::
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_7g9b.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_7g9b.webp
 caption: 优选后 ITDOG IP数量
 ---
 ::
@@ -63,7 +63,7 @@ caption: 优选后 ITDOG IP数量
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_6q2q.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_6q2q.webp
 caption: 添加CNAME记录
 ---
 ::
@@ -80,7 +80,7 @@ caption: 添加CNAME记录
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_hsdp.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_hsdp.webp
 caption: 配置Worker路由
 ---
 ::
@@ -89,7 +89,7 @@ caption: 配置Worker路由
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_9fjc.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_9fjc.webp
 caption: 配置域名优选
 ---
 ::
@@ -106,7 +106,7 @@ caption: 配置域名优选
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_kp01.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_kp01.webp
 caption: 创建CloudFlare Worker 并修改代码
 ---
 ::
@@ -212,7 +212,7 @@ function getProxyPrefix(hostname) {
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_jtm6.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_jtm6.webp
 caption: 添加外域路由
 ---
 ::
@@ -229,7 +229,7 @@ caption: 添加外域路由
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_cf42.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_cf42.webp
 caption: 外域域名CNAME到cf cdn域名去
 ---
 ::
@@ -244,7 +244,7 @@ PS：此方法同样适用于子域
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_g4xp.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_g4xp.webp
 caption: 创建Tunne
 ---
 ::
@@ -256,7 +256,7 @@ caption: 创建Tunne
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_j14k.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_j14k.webp
 caption: 配置优选域名
 ---
 ::
@@ -273,7 +273,7 @@ caption: 配置优选域名
 
 ::pic
 ---
-src: https://assets.olinl.com/images/cf-fastip/20260622083216_u3ky.webp
+src: https://oss.olinl.com/cf-fastip/20260622083216_u3ky.webp
 caption: 配置优选域名
 ---
 ::

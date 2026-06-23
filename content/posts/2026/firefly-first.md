@@ -3,7 +3,7 @@ title: 「迁」Firefly 博客部署教程
 description: 手把手带你搭建一个静态的博客网站。
 date: 2026-06-12 15:46:00
 updated: 2026-06-18 18:45:13
-image: https://assets.olinl.com/images/cover/firefly-first.webp
+image: https://oss.olinl.com/cover/firefly-first.webp
 categories: [教程]
 tags: [搭建, Cloudflare]
 ---
@@ -56,7 +56,7 @@ tags: [搭建, Cloudflare]
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210318_48c1.webp
+src: https://oss.olinl.com/firefly-first/20260623210318_48c1.webp
 caption: 下载Node.JS
 ---
 ::
@@ -70,7 +70,7 @@ npm -v
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210335_fz71.webp
+src: https://oss.olinl.com/firefly-first/20260623210335_fz71.webp
 caption: 验证版本号
 ---
 ::
@@ -88,7 +88,7 @@ pnpm -v
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210350_kmvg.webp
+src: https://oss.olinl.com/firefly-first/20260623210350_kmvg.webp
 caption: 安装并验证pnpm
 ---
 ::
@@ -99,7 +99,7 @@ caption: 安装并验证pnpm
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210403_vjvm.webp
+src: https://oss.olinl.com/firefly-first/20260623210403_vjvm.webp
 caption: 下载Git
 ---
 ::
@@ -111,7 +111,7 @@ caption: 下载Git
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210418_rghz.webp
+src: https://oss.olinl.com/firefly-first/20260623210418_rghz.webp
 caption: 绑定账号
 ---
 ::
@@ -124,7 +124,7 @@ caption: 绑定账号
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210431_8tnx.webp
+src: https://oss.olinl.com/firefly-first/20260623210431_8tnx.webp
 caption: 下载VSCode
 ---
 ::
@@ -147,7 +147,7 @@ link: https://github.com/CuteLeaf/Firefly
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210551_rs7m.webp
+src: https://oss.olinl.com/firefly-first/20260623210551_rs7m.webp
 caption: Fork仓库
 ---
 ::
@@ -156,7 +156,7 @@ caption: Fork仓库
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210605_0bby.webp
+src: https://oss.olinl.com/firefly-first/20260623210605_0bby.webp
 caption: 填写信息后Fork
 ---
 ::
@@ -174,7 +174,7 @@ caption: 填写信息后Fork
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210619_j4oi.webp
+src: https://oss.olinl.com/firefly-first/20260623210619_j4oi.webp
 caption: 选择项目 拉取代码
 ---
 ::
@@ -189,7 +189,7 @@ pnpm install
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210631_4st7.webp
+src: https://oss.olinl.com/firefly-first/20260623210631_4st7.webp
 caption: 打开终端
 ---
 ::
@@ -233,7 +233,7 @@ pnpm dev
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210747_mcgc.webp
+src: https://oss.olinl.com/firefly-first/20260623210747_mcgc.webp
 caption: 客户端提交代码
 ---
 ::
@@ -354,7 +354,7 @@ git push
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210935_i77u.webp
+src: https://oss.olinl.com/firefly-first/20260623210935_i77u.webp
 caption: 创建优选域名
 ---
 ::
@@ -376,7 +376,7 @@ caption: 创建优选域名
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623210948_tg1k.webp
+src: https://oss.olinl.com/firefly-first/20260623210948_tg1k.webp
 caption: 创建Worker路由
 ---
 ::
@@ -392,7 +392,7 @@ caption: 创建Worker路由
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623211001_5jzc.webp
+src: https://oss.olinl.com/firefly-first/20260623211001_5jzc.webp
 caption: 添加Worker的DNS解析记录
 ---
 ::
@@ -407,7 +407,7 @@ caption: 添加Worker的DNS解析记录
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623211017_851u.webp
+src: https://oss.olinl.com/firefly-first/20260623211017_851u.webp
 caption: 最终配置
 ---
 ::
@@ -445,7 +445,7 @@ caption: 最终配置
 
 ::pic
 ---
-src: https://assets.olinl.com/images/firefly-first/20260623211030_gbgd.webp
+src: https://oss.olinl.com/firefly-first/20260623211030_gbgd.webp
 caption: 配置域名解析
 ---
 ::
