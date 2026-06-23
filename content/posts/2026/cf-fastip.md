@@ -3,11 +3,9 @@ title: 使用CloudFlare优选任何网站！
 description: 通过 Worker 反代为网站做 IP 分流优选，提高国内访问速度与可用性
 date: 2026-06-13 19:54:38
 updated: 2026-06-21 16:57:55
-image: https://assets.olinl.com/images/cf-fastip/20260622083216_7g9b.webp
+image: https://assets.olinl.com/images/cover/cf-fastip.webp
 categories: [网络]
 tags: [CloudFlare,Vercel,优选]
-
-permalink: /posts/cf-fastip
 ---
 
 ::pic
