@@ -124,7 +124,7 @@ export default defineNuxtConfig({
 		},
 		build: {
 			rollupOptions: {
-				external: [/^rolldown/, /^unrun/],
+				external: [/^rolldown/],
 			},
 		},
 		css: {
