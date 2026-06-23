@@ -26,7 +26,7 @@ export function useArticle(path?: MaybeRefOrGetter<string | undefined>) {
 export function getArticleIndexOptions(path = 'posts/%') {
 	return queryCollection('content')
 		.where('stem', 'LIKE', path)
-		.select('categories', 'date', 'description', 'image', 'path', 'readingTime', 'recommend', 'tags', 'title', 'type', 'updated')
+		.select('categories', 'date', 'description', 'image', 'path', 'readingTime', 'recommend', 'tags', 'title', 'top', 'type', 'updated')
 		.all()
 }
 
@@ -87,8 +87,8 @@ export function useArticleSort(list: MaybeRefOrGetter<ArticleProps[]>, options?:
 
 	const listSorted = computed(() => orderBy(
 		toValue(list),
-		[sortOrder.value, 'date'],
-		[isAscending.value ? 'asc' : 'desc'],
+		['top', sortOrder.value, 'date'],
+		['desc', isAscending.value ? 'asc' : 'desc', isAscending.value ? 'asc' : 'desc'],
 	))
 
 	return {

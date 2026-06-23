@@ -17,6 +17,7 @@ const mainDate = computed(() => props.useUpdated ? props.updated : props.date)
 	<div class="gradient-card" :style="{ '--c-accent': getCategoryColor(categories?.[0]) }">
 		<UtilLink class="article-link scrollbar-hidden scrollcheck-x" :to :title="description">
 			<span class="article-title">
+				<Icon v-if="top" name="tabler:pin-filled" class="article-top-icon" />
 				<Icon v-if="showCategory" :name="getCategoryIcon(categories?.[0])" />
 				{{ title }}
 			</span>
@@ -99,6 +100,15 @@ const mainDate = computed(() => props.useUpdated ? props.updated : props.date)
 			content: "#";
 			opacity: 0.5;
 		}
+	}
+}
+
+.article-top-icon {
+	color: #ef4444;
+	flex-shrink: 0;
+
+	html.dark & {
+		color: #f87171;
 	}
 }
 </style>

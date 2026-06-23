@@ -19,7 +19,10 @@ export interface ArticleSchema {
 	type?: ArticleType
 
 	image?: string
+	/** 数值越大越靠前，常用于精选推荐 */
 	recommend?: number
+	/** 置顶文章，排序时优先于其他文章 */
+	top?: boolean
 	references?: { title?: string, link?: string }[]
 	/** TODO */
 	draft?: boolean
@@ -40,6 +43,7 @@ const articleSchema = z.object({
 
 	image: z.string().optional(),
 	recommend: z.number().optional(),
+	top: z.boolean().default(false),
 	references: z.array(z.object({
 		title: z.string().optional(),
 		link: z.string().optional(),

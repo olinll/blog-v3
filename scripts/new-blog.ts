@@ -157,7 +157,8 @@ const frontmatter = {
 	type: type === 'tech' ? undefined : type,
 	categories: category === blogConfig.defaultCategory ? undefined : `[${category}]`,
 	tags: tags ? `[${tags.join(', ')}]` : undefined,
-	// draft: 'true # 撰写完成后，请删除此行',
+	// top: 'true # 置顶文章，取消注释即可',
+		// draft: 'true # 撰写完成后，请删除此行',
 }
 // #endregion
 

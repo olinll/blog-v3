@@ -18,7 +18,7 @@ const basicConfig = {
 	},
 	favicon: 'https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&spec=0',
 	language: 'zh-CN',
-	timeEstablished: '2026-06-20',
+	timeEstablished: '2026-06-10',
 	timeZone: 'Asia/Shanghai',
 	url: 'https://v3.olinl.com/',
 	defaultCategory: '未分类',
@@ -57,6 +57,7 @@ const blogConfig = {
 		order: {
 			date: '创建日期',
 			updated: '更新日期',
+			top: '置顶',
 			// title: '标题',
 		},
 		/** 使用 pnpm new 新建文章时自动生成自定义链接（permalink/abbrlink） */

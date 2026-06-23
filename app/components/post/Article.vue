@@ -18,6 +18,11 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 		</p>
 
 		<div class="article-info">
+			<span v-if="top" class="article-top-badge">
+				<Icon name="tabler:pin-filled" />
+				置顶
+			</span>
+
 			<UtilDate
 				v-if="date && (showAllDate || !useUpdated)"
 				:date
@@ -133,6 +138,25 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 
 	@container (max-width: #{$breakpoint-phone}) {
 		@include cover-narrow;
+	}
+}
+
+.article-top-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25em;
+	padding: 0.15em 0.55em;
+	border-radius: 0.6em;
+	background: #fef2f2;
+	color: #ef4444;
+	border: 1px solid #fecaca;
+	font-weight: 600;
+	line-height: 1.4;
+
+	html.dark & {
+		background: #3b1116;
+		color: #f87171;
+		border-color: #7f1d1d;
 	}
 }
 </style>
