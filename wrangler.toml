@@ -1,0 +1,41 @@
+# Cloudflare Workers 配置(Static Assets 模式,用于托管 Nuxt SSG 产物)
+# 文档:https://developers.cloudflare.com/workers/static-assets/
+
+name = "blog-v3"
+compatibility_date = "2026-06-10"
+# nodejs_compat 是为了兼容部分 polyfill;纯静态可去掉,留着无害
+compatibility_flags = ["nodejs_compat"]
+
+# Workers 不带流量;observability 默认开,方便在 Dashboard 看请求/错误
+[observability]
+enabled = true
+
+# ───────────────────────────────────────────────────────
+# 静态资源配置:把 nuxt generate 的产物目录托管出去
+# ───────────────────────────────────────────────────────
+[assets]
+directory = "./.output/public"
+
+# 路由匹配不到文件时的处理策略:
+#   - "single-page-application":所有未匹配请求返回 index.html(SPA fallback)
+#   - "404-page":返回 .output/public/404.html(更适合 SSG,Nuxt 会生成 404.html)
+#   - "none":直接返回 404
+not_found_handling = "404-page"
+
+# 当请求路径有对应静态文件时,Workers 直接返回文件,不调用 Worker 脚本
+# (我们没有写 main 入口,所以这里必须设 false,否则会报错)
+run_worker_first = false
+
+# ───────────────────────────────────────────────────────
+# 自定义域名(可选,绑定后用域名访问)
+# 部署后也可以在 Dashboard 手动绑定,二选一
+# ───────────────────────────────────────────────────────
+# [[routes]]
+# pattern = "blog.olinl.com"
+# custom_domain = true
+
+# ───────────────────────────────────────────────────────
+# 环境变量(可选,本项目暂未使用)
+# ───────────────────────────────────────────────────────
+# [vars]
+# SITE_NAME = "Olinl Blog"
