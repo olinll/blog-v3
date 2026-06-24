@@ -41,6 +41,8 @@ jobs:
         run: pnpm generate
         env:
           NODE_OPTIONS: --max-old-space-size=4096
+          # gh-pages 产物被 EdgeOne Pages 拉取,写死 EdgeOne 作为构建时预设值
+          BLOG_CDN: EdgeOne
 
       # 把 edgeone.json 拷进产物目录,这样 EdgeOne 拉 gh-pages 时能识别 headers/redirects 配置
       - name: Copy edgeone.json into dist

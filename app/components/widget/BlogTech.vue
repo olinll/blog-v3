@@ -5,7 +5,7 @@ import { packageManager, version } from '~~/package.json'
 import pnpmWorkspace from '~~/pnpm-workspace.yaml'
 
 const appConfig = useAppConfig()
-const { public: { arch, ci, nodeVersion, platform } } = useRuntimeConfig()
+const { public: { arch, cdn: cdnPreset, ci, nodeVersion, platform } } = useRuntimeConfig()
 
 const ciPlatform = computed(() => {
 	const iconName = ciIcons[ci]
@@ -20,12 +20,14 @@ const ciPlatform = computed(() => {
 })
 
 /**
- * CDN 加速平台,通过响应头 `server` 字段实时探测:
- *   - `edgeone-pages` → EdgeOne
- *   - `cloudflare`    → Cloudflare
- * 仅客户端执行;探测失败或非已知 CDN 时保持空值,组件不渲染该行,避免闪动。
+ * CDN 加速平台:
+ *   1. 初值:构建时 `BLOG_CDN` 环境变量烤入产物(EdgeOne/Cloudflare/空),首屏无闪动
+ *   2. 校正:挂载后用响应头 `server` 字段实时探测
+ *      - `edgeone-pages` → EdgeOne
+ *      - `cloudflare`    → Cloudflare
+ *      若与初值不一致(同一份产物部署到多个平台时会发生),静默更新
  */
-const cdn = ref('')
+const cdn = ref(cdnPreset)
 const cdnPlatform = computed(() => {
 	const iconName = cdnIcons[cdn.value]
 	if (!iconName)
@@ -40,16 +42,20 @@ const cdnPlatform = computed(() => {
 
 onMounted(async () => {
 	try {
-		// HEAD 请求自身页面,只读响应头,不下载 body
 		const res = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
 		const server = (res.headers.get('server') || '').toLowerCase()
+		let detected = ''
 		if (server.includes('edgeone'))
-			cdn.value = 'EdgeOne'
+			detected = 'EdgeOne'
 		else if (server.includes('cloudflare'))
-			cdn.value = 'Cloudflare'
+			detected = 'Cloudflare'
+
+		// 探测到具体 CDN 且与当前值不一致才更新,避免本地预览或未知 CDN 时把预设值清掉
+		if (detected && detected !== cdn.value)
+			cdn.value = detected
 	}
 	catch {
-		// 失败时静默,保持空值即不展示
+		// 失败时保持构建时的预设值
 	}
 })
 
@@ -59,7 +65,7 @@ const [pm, pmVersion] = packageManager.split('@') as [string, string]
 
 const service = computed(() => ([
 	{ label: '构建平台', value: () => ci ? ciPlatform.value : [h(Icon, { name: 'tabler:server-2' }), ' Self-Hosted'] },
-	// CDN 加速通过响应头实时探测,探测前不显示该行,避免闪动
+	// CDN 加速:初值来自构建时 BLOG_CDN 环境变量,客户端用响应头校正;空值时不渲染该行
 	...(cdn.value ? [{ label: 'CDN 加速', value: () => cdnPlatform.value }] : []),
 	{ label: '图片存储', value: () => [h(Icon, { name: 'simple-icons:alibabacloud' }), ' Aliyun OSS'] },
 	{ label: '软件协议', value: 'MIT' },
@@ -82,7 +88,7 @@ const expand = ref(false)
 </script>
 
 <template>
-<BlogWidget card grayscale title="技术信息">
+<BlogWidget card title="技术信息">
 	<ZDlGroup :items="service" />
 	<ZExpand v-model="expand" in-place name="构建信息">
 		<ZDlGroup size="small" :items="techstack" />

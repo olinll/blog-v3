@@ -96,6 +96,9 @@ export default defineNuxtConfig({
 		public: {
 			arch,
 			buildTime: Temporal.Now.zonedDateTimeISO().toString(),
+			// 构建时预设的 CDN 加速平台(EdgeOne/Cloudflare/空),
+			// 客户端会再用响应头校正,以应对同一份产物部署到多个平台的情况
+			cdn: env.BLOG_CDN || '',
 			// EdgeOne 检测暂时不可用
 			ci: env.TENCENTCLOUD_RUNENV === 'SCF' ? 'EdgeOne' : ciName || '',
 			nodeVersion,
