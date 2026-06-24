@@ -1,7 +1,6 @@
 <template>
 <BlogWidget
 	card
-	dim
 	title="博客/技术社区"
 	bg-img="https://p.qlogo.cn/gh/1105154206/1105154206/100/"
 	bg-right

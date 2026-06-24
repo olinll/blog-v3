@@ -56,6 +56,13 @@ export const ciIcons: Record<string, string> = {
 	'Vercel': 'ri:vercel-fill',
 }
 
+/** BlogTech Widget CDN 加速平台图标映射 */
+// @keep-sorted
+export const cdnIcons: Record<string, string> = {
+	'Cloudflare': 'devicon:cloudflare',
+	'EdgeOne': 'https://edgeone.ai/favicon.ico',
+}
+
 /** 主域名图标映射 */
 // @keep-sorted
 const mainDomainIcons: Record<string, string> = {
