@@ -9,11 +9,12 @@ tags: [搭建, Cloudflare]
 ---
 
 
-<iframe width="100%" height="468"
-  src="//player.bilibili.com/player.html?bvid=BV17Njb6nEH8&p=1&autoplay=0"
-  scrolling="no" border="0" frameborder="no"
-  framespacing="0" allowfullscreen="true">
-</iframe>
+::video-embed
+---
+type: bilibili
+id: BV17Njb6nEH8
+---
+::
 
 ## 一、前置准备
 
