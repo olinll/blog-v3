@@ -19,12 +19,48 @@ const ciPlatform = computed(() => {
 	return h('span', {}, [iconNode, ` ${ci.split(' ')[0]}`])
 })
 
+/**
+ * CDN 加速平台,通过响应头 `server` 字段实时探测:
+ *   - `edgeone-pages` → EdgeOne
+ *   - `cloudflare`    → Cloudflare
+ * 仅客户端执行;探测失败或非已知 CDN 时保持空值,组件不渲染该行,避免闪动。
+ */
+const cdn = ref('')
+const cdnPlatform = computed(() => {
+	const iconName = cdnIcons[cdn.value]
+	if (!iconName)
+		return ''
+
+	const iconNode = iconName.startsWith('http')
+		? h('img', { src: iconName, alt: '' })
+		: h(Icon, { name: iconName })
+
+	return h('span', {}, [iconNode, ` ${cdn.value}`])
+})
+
+onMounted(async () => {
+	try {
+		// HEAD 请求自身页面,只读响应头,不下载 body
+		const res = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
+		const server = (res.headers.get('server') || '').toLowerCase()
+		if (server.includes('edgeone'))
+			cdn.value = 'EdgeOne'
+		else if (server.includes('cloudflare'))
+			cdn.value = 'Cloudflare'
+	}
+	catch {
+		// 失败时静默,保持空值即不展示
+	}
+})
+
 // @ts-expect-error pnpm-workspace.yaml 无类型定义
 const packages = merge(...Object.values(pnpmWorkspace.catalogs))
 const [pm, pmVersion] = packageManager.split('@') as [string, string]
 
 const service = computed(() => ([
 	{ label: '构建平台', value: () => ci ? ciPlatform.value : [h(Icon, { name: 'tabler:server-2' }), ' Self-Hosted'] },
+	// CDN 加速通过响应头实时探测,探测前不显示该行,避免闪动
+	...(cdn.value ? [{ label: 'CDN 加速', value: () => cdnPlatform.value }] : []),
 	{ label: '图片存储', value: () => [h(Icon, { name: 'simple-icons:alibabacloud' }), ' Aliyun OSS'] },
 	{ label: '软件协议', value: 'MIT' },
 	{ label: '文章许可', value: appConfig.copyright.abbr },
