@@ -1,0 +1,58 @@
+name: Build & Push to gh-pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write # 需要推送到 gh-pages 分支
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.8.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate static site
+        # GITHUB_ACTIONS=true 自动启用 nuxt.config.ts 中的 autoSubfolderIndex 修复
+        run: pnpm generate
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      # 把 edgeone.json 拷进产物目录,这样 EdgeOne 拉 gh-pages 时能识别 headers/redirects 配置
+      - name: Copy edgeone.json into dist
+        run: cp edgeone.json .output/public/edgeone.json
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .output/public
+          publish_branch: gh-pages
+          force_orphan: true # 不保留历史,每次都是干净的一次提交,gh-pages 仓库不会越来越大
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
