@@ -1,8 +1,8 @@
 ---
 title: 部署 3X-UI 面板
 description: 记录一下搭建3x-ui面板的过程
-date: 2026-06-24 23:09:03
-updated: 2026-06-24 23:09:03
+date: 2026-05-30 23:09:03
+updated: 2026-05-30 23:09:03
 image: https://oss.olinl.com/cover/3x-ui.webp
 categories: [服务]
 tags: [3x-ui,代理,clash]
