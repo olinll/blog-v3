@@ -390,6 +390,15 @@ link: https://github.com/mihomo-party-org/clash-party
 ---
 ::
 
+在线订阅转换工具 (非本站)
+
+::link-card
+---
+title: 在线订阅转换工具 最新版
+description: 粘贴订阅、选择客户端，一键生成适合 OpenClash / Mihomo / Surge / QuanX 等客户端使用的订阅链接。
+link: https://v2rayssr.com/sub/
+---
+::
 
 附上自己在用的Clash yaml 配置
 
