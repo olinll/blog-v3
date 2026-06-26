@@ -147,6 +147,7 @@ export default [
 				link: 'https://gcweb.cc/',
 				icon: 'https://www.gcweb.cc/static/img/pig.jpg',
 				avatar: 'https://www.gcweb.cc/static/img/pig.jpg',
+				archs: ['HTML', '服务器'],
 				date: '2026-06-26',
 			},
 		],
