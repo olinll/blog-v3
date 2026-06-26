@@ -3,6 +3,9 @@ import type { ArticleProps } from '~/types/article'
 
 const props = defineProps<{ useUpdated?: boolean } & ArticleProps>()
 const showAllDate = isTimeDiffSignificant(props.date, props.updated)
+
+const { count: views } = useUmamiPageViews(() => props.path!)
+const { count: comments } = useTwikooCounts(() => props.path!)
 </script>
 
 <template>
@@ -45,6 +48,16 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 				<Icon name="tabler:pilcrow" />
 				{{ formatNumber(readingTime?.words) }}字
 			</span>
+
+			<span v-if="views !== '--'" class="article-views">
+				<Icon name="tabler:eye" />
+				{{ views }} 次阅读
+			</span>
+
+			<span class="article-comments">
+				<Icon name="tabler:message-circle" />
+				{{ comments }}
+			</span>
 		</div>
 	</article>
 </UtilLink>
@@ -68,13 +81,18 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 
 .article-info {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5em clamp(1em, 5%, 1.5em);
+	flex-wrap: nowrap;
+	gap: 0.5em clamp(0.6em, 3%, 1em);
 	font-size: 0.8em;
 	color: var(--c-text-2);
+	overflow: hidden;
 
 	&:empty {
 		display: none;
+	}
+
+	> span {
+		flex-shrink: 0;
 	}
 
 	.use-updated {

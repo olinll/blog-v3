@@ -8,6 +8,8 @@ const { data: postGuestbook } = await useAsyncData(
   () => queryCollection('content').path('/guestbook').first(),
 )
 
+const { count: guestbookViews } = useUmamiPageViews(() => '/guestbook')
+
 useSeoMeta({
   title: '留言板',
   description: `${appConfig.title}的留言板，欢迎留下你的足迹。`,
@@ -25,6 +27,10 @@ useSeoMeta({
     </div>
     <h1 class="hero-title text-creative">留言板</h1>
     <p class="hero-desc">说点什么吧，任何话都可以 ✨</p>
+    <p v-if="guestbookViews !== '--'" class="hero-views">
+      <Icon name="tabler:eye" />
+      <span>{{ guestbookViews }} 次阅读</span>
+    </p>
   </header>
 
   <!-- 说明内容 -->
@@ -88,6 +94,16 @@ useSeoMeta({
   margin: 0.5rem 0 0;
   color: var(--c-text-2);
   font-size: 1.05rem;
+}
+
+.hero-views {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  margin: 0.5rem 0 0;
+  color: var(--c-text-3);
+  font-size: 0.9em;
 }
 
 // ---------- 说明卡片 ----------

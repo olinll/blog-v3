@@ -13,6 +13,8 @@ const shareText = `【${appConfig.title}】${props.title}\n\n${
 	new URL(props.path!, appConfig.url).href}`
 
 const { copy, copied } = useCopy(shareText)
+
+const { count: views } = useUmamiPageViews(() => props.path!)
 </script>
 
 <template>
@@ -53,6 +55,11 @@ const { copy, copied } = useCopy(shareText)
 			<span>
 				<Icon name="tabler:pilcrow" />
 				{{ formatNumber(readingTime?.words) }} 字
+			</span>
+
+			<span v-if="views !== '--'">
+				<Icon name="tabler:eye" />
+				{{ views }} 次阅读
 			</span>
 		</div>
 	</div>

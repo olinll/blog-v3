@@ -17,6 +17,8 @@ useSeoMeta({
 	description: `${appConfig.title}的友链页面，收集了添加他为友链的网站和他订阅的网站列表。`,
 })
 
+const { count: linkViews } = useUmamiPageViews(() => '/link')
+
 const copyFields = {
 	博主: myFeed.author,
 	标题: myFeed.title,
@@ -57,10 +59,26 @@ const copyFields = {
 	</template>
 </Tab>
 
-<PostComment />
+<PostComment>
+	<template #header-extra>
+		<span v-if="linkViews !== '--'" class="page-views">
+			<Icon name="tabler:eye" />
+			<span>{{ linkViews }} 次阅读</span>
+		</span>
+	</template>
+</PostComment>
 </template>
 
 <style lang="scss" scoped>
+.page-views {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+	font-size: 0.6em;
+	font-weight: 400;
+	color: var(--c-text-3);
+	font-family: var(--font-basic);
+}
 .link-tab {
 	margin: 1rem;
 }

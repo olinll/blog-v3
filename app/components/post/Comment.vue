@@ -62,8 +62,9 @@ onMounted(() => {
 
 <template>
 <section ref="comment" class="z-comment">
-	<h3 class="text-creative">
-		评论区
+	<h3 class="text-creative comment-title">
+		<span>评论区</span>
+		<slot name="header-extra" />
 	</h3>
 
 	<!-- interactive 默认会把气泡移动到 triggerTarget 的父元素上 -->
@@ -118,6 +119,12 @@ onMounted(() => {
 		margin-top: 3rem;
 		font-size: 1.25rem;
 	}
+}
+
+.comment-title {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5em;
 }
 
 :deep() > [data-tippy-root] > .tippy-box {

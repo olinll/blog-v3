@@ -11,6 +11,8 @@ const { data: post } = await useAsyncData(
 
 const excerpt = computed(() => post.value?.description || '')
 
+const { count: postCommentCount } = useTwikooCounts(() => route.path)
+
 if (post.value) {
 	useSeoMeta({
 		title: post.value.title,
@@ -48,7 +50,14 @@ if (import.meta.dev) {
 
 	<PostFooter v-bind="post" />
 	<PostSurround />
-	<PostComment />
+	<PostComment>
+		<template #header-extra>
+			<span class="comment-count hidden">
+				<Icon name="tabler:message-circle" />
+				{{ postCommentCount }}
+			</span>
+		</template>
+	</PostComment>
 </template>
 
 <ZError

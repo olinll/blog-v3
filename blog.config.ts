@@ -86,6 +86,13 @@ const blogConfig = {
 		{ src: 'https://lib.baomitu.com/twikoo/1.6.44/twikoo.min.js', defer: true },
 	],
 
+	/** 自己部署的 Umami 统计服务 API（Share 公开分享） */
+	umami: {
+		apiUrl: 'https://umami.olinl.com',
+		websiteId: '71de627e-31d7-4e39-b44a-ad899c628a5b',
+		shareId: 'Z8ZeG4A7PW3FEp4S',
+	},
+
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
 		envId: 'https://twikoo.olinl.com/',

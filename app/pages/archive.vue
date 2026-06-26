@@ -15,7 +15,7 @@ const spacing = ref(0)
 const column = ref(1)
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'blog-visit', 'blog-log'])
 
 const tuningRef = useTemplateRef('tuning-panel')
 useAvoidTarget(tuningRef, showTuning)

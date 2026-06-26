@@ -8,6 +8,11 @@ declare global {
 				path?: string
 				lang?: string
 			}) => void
+			getCommentsCount: (options: {
+				envId: string
+				urls: string[]
+				includeReply: boolean
+			}) => Promise<Array<{ url: string, count: number }>>
 			version: string
 		}
 	}
