@@ -150,6 +150,16 @@ export default [
 				archs: ['HTML', '服务器'],
 				date: '2026-06-26',
 			},
+			{
+				author: '陶然',
+				desc: '一团温暖的粘土博客',
+				link: 'https://taoran.weppp.cyou/',
+				feed: 'https://taoran.weppp.cyou/rss.xml',
+				icon: 'https://taoran.weppp.cyou/favicon.svg',
+				avatar: 'https://taoran.weppp.cyou/favicon.svg',
+				archs: ['Astro', '服务器'],
+				date: '2026-06-26',
+			},
 		],
 	},
 	// #endregion
