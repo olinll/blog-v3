@@ -141,7 +141,14 @@ export default [
 				archs: ['Vue', '服务器'],
 				date: '2026-06-23',
 			},
-
+			{
+				author: 'gc的小站',
+				desc: '综合性网站，希望能对你有帮助',
+				link: 'https://gcweb.cc/',
+				icon: 'https://www.gcweb.cc/static/img/pig.jpg',
+				avatar: 'https://www.gcweb.cc/static/img/pig.jpg',
+				date: '2026-06-26',
+			},
 		],
 	},
 	// #endregion
