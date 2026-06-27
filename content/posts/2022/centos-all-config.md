@@ -184,7 +184,7 @@ yum update -y
 icon: https://picsum.photos/100/100
 title: LVM 硬盘工具使用教程
 description: '使用LVM进行创建分区,扩容分区等操作'
-link: "/2024/lvm-setup"
+link: "/2024/lvm-guide"
 ---
 ::
 

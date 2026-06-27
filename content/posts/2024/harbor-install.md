@@ -214,7 +214,7 @@ ping harbor.local
 icon: https://picsum.photos/100/100
 title: Docker 配置私服自签名证书信任
 description: '在 Linux 和 Windows 客户端上配置 Docker 信任私有镜像仓库的自签名 SSL 证书，解决拉取推送时的证书验证失败问题'
-link: "/2024/docker-private-cert"
+link: "/2025/docker-private-cert"
 ---
 ::
 
