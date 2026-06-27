@@ -1,7 +1,7 @@
 ---
-title: frp-deploy
-description: 讲述关于frp-deploy的故事，并根据FRP、内网穿透、HomeLab给出网络。
-date: 2026-06-27 15:31:19
+title: FRP 内网穿透服务部署指南
+description: 介绍如何使用 FRP 将内网主机端口通过公网服务器暴露到互联网，包括服务端与客户端的配置及 Systemd 服务管理。
+date: 2026-02-07
 updated: 2026-06-27 15:31:19
 image: # 封面图推荐 2:1，不含与标题重复的文字
 categories: [网络]
