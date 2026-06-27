@@ -179,7 +179,14 @@ yum update -y
 ### 3. 硬盘操作
 
 此操作可以借助lvm2工具，详细操作见另一篇文章：
-
+::link-card
+---
+icon: https://picsum.photos/100/100
+title: LVM 硬盘工具使用教程
+description: '使用LVM进行创建分区,扩容分区等操作'
+link: "/2024/lvm-setup"
+---
+::
 
 
 ### 4. 配置 SELinux
