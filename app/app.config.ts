@@ -104,7 +104,7 @@ export default defineAppConfig({
 	/** 友链页面 */
 	link: {
 		/** 无订阅源展示静音图标 */
-		remindNoFeed: true,
+		remindNoFeed: false,
 		/** 友链分组内随机排序 */
 		randomInGroup: true,
 	},
@@ -117,7 +117,7 @@ export default defineAppConfig({
 				{ icon: 'tabler:files', text: '文章', url: '/' },
 				{ icon: 'tabler:link', text: '友链', url: '/link' },
 				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
-					{ icon: 'tabler:message', text: '留言板', url: '/guestbook' },
+				{ icon: 'tabler:message', text: '留言板', url: '/guestbook' },
 			],
 		},
 	] satisfies Nav,
