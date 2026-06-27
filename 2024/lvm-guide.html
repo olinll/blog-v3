@@ -1,0 +1,488 @@
+<!DOCTYPE html><html  lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LVM 硬盘工具使用教程 | Olinl Blog</title><link rel="preconnect" href="https://twikoo.olinl.com/"><link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin><link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.9/katex.min.css" media="print" onload="this.media=&quot;all&quot;"><link rel="stylesheet" href="https://rsms.me/inter/inter.css" media="print" onload="this.media=&quot;all&quot;"><link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Serif+SC:wght@200..900&display=swap" media="print" onload="this.media=&quot;all&quot;"><link rel="stylesheet" href="https://fonts.bytedance.com/dfd/api/v1/css?family=DOUYINSANSBOLD-GB&display=swap" media="print" onload="this.media=&quot;all&quot;"><link rel="stylesheet" href="/_nuxt/entry.DNv1NjZB.css" crossorigin><link rel="stylesheet" href="/_nuxt/_...DPo7a9J6.css" crossorigin><link rel="stylesheet" href="/_nuxt/Pic.CoymvDkG.css" crossorigin><link rel="stylesheet" href="/_nuxt/ProseA.BqFNgAMl.css" crossorigin><link rel="stylesheet" href="/_nuxt/Comment.B24BaP2D.css" crossorigin><link rel="stylesheet" href="/_nuxt/Toc.DS6K7QNS.css" crossorigin><link rel="stylesheet" href="/_nuxt/BlogWidget.BELqqHsa.css" crossorigin><link rel="stylesheet" href="/_nuxt/Alert.Bc-JWU4Q.css" crossorigin><link rel="stylesheet" href="/_nuxt/ProseCode.hPExl1eo.css" crossorigin><style>:where(.i-catppuccin\:file){display:inline-block;width:1em;height:1em;background-repeat:no-repeat;background-size:100% 100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath fill='none' stroke='%23cad3f5' stroke-linecap='round' stroke-linejoin='round' d='M13.5 6.5v6a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h4.01m-.01 0l5 5h-4a1 1 0 0 1-1-1z'/%3E%3C/svg%3E")}:where(.i-ri\:creative-commons-line){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M9 8c1.104 0 2.105.448 2.829 1.173l-1.414 1.413a2 2 0 1 0 0 2.828l1.413 1.414A4.001 4.001 0 0 1 5 12c0-2.208 1.792-4 4-4m9.829 1.173A4.001 4.001 0 0 0 12 12a4.001 4.001 0 0 0 6.828 2.828l-1.414-1.414a2 2 0 1 1 0-2.828zM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12m10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16'/%3E%3C/svg%3E")}:where(.i-ri\:qq-line){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='m17.536 12.514l-.696-1.796c0-.021.01-.375.01-.558C16.85 7.088 15.447 4 12 4s-4.848 3.088-4.848 6.16c0 .183.009.537.01.557l-.696 1.797c-.19.515-.38 1.05-.517 1.51c-.657 2.189-.444 3.095-.282 3.115c.348.043 1.354-1.648 1.354-1.648c0 .98.487 2.258 1.542 3.18c-.394.127-.878.32-1.188.557c-.28.214-.245.431-.194.52c.22.385 3.79.245 4.82.125c1.03.12 4.599.26 4.82-.126c.05-.088.085-.305-.194-.519c-.311-.237-.795-.43-1.19-.556c1.055-.923 1.542-2.202 1.542-3.181c0 0 1.007 1.691 1.355 1.648c.162-.02.378-.928-.283-3.116a27 27 0 0 0-.516-1.509m1.021 8.227c-.373.652-.833.892-1.438 1.057a5 5 0 0 1-.794.138c-.44.045-.986.065-1.613.064a33 33 0 0 1-2.71-.116c-.692.065-1.785.114-2.71.116a16 16 0 0 1-1.614-.064a5 5 0 0 1-.793-.138c-.605-.164-1.065-.405-1.44-1.059a2.27 2.27 0 0 1-.239-1.652c-.592-.132-1.001-.482-1.279-.911a2.4 2.4 0 0 1-.309-.71a4 4 0 0 1-.116-1.106c.013-.785.187-1.762.532-2.912c.14-.466.327-1.008.567-1.655l.554-1.43l-.002-.203C5.153 5.605 7.589 2 12 2c4.413 0 6.848 3.605 6.848 8.16l-.001.203l.553 1.43l.01.026c.225.606.413 1.153.556 1.626c.348 1.15.522 2.128.535 2.916q.012.61-.118 1.108c-.066.246-.161.48-.31.708c-.276.427-.684.776-1.277.91c.13.554.055 1.14-.24 1.654'/%3E%3C/svg%3E")}:where(.i-ri\:subway-line){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='m17.2 20l1.8 1.5v.5H5v-.5L6.8 20H5a2 2 0 0 1-2-2V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v11a2 2 0 0 1-2 2zM13 5v6h6V7a2 2 0 0 0-2-2zm-2 0H7a2 2 0 0 0-2 2v4h6zm8 8H5v5h14zM7.5 17a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3m9 0a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3'/%3E%3C/svg%3E")}:where(.i-simple-icons\:nuxt){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M13.464 19.83h8.922c.283 0 .562-.073.807-.21a1.6 1.6 0 0 0 .591-.574a1.53 1.53 0 0 0 .216-.783a1.53 1.53 0 0 0-.217-.782L17.792 7.414a1.6 1.6 0 0 0-.591-.573a1.65 1.65 0 0 0-.807-.21c-.283 0-.562.073-.807.21a1.6 1.6 0 0 0-.59.573L13.463 9.99L10.47 4.953a1.6 1.6 0 0 0-.591-.573a1.65 1.65 0 0 0-.807-.21c-.284 0-.562.073-.807.21a1.6 1.6 0 0 0-.591.573L.216 17.481a1.53 1.53 0 0 0-.217.782c0 .275.074.545.216.783a1.6 1.6 0 0 0 .59.574c.246.137.525.21.808.21h5.6c2.22 0 3.856-.946 4.982-2.79l2.733-4.593l1.464-2.457l4.395 7.382h-5.859Zm-6.341-2.46l-3.908-.002l5.858-9.842l2.923 4.921l-1.957 3.29c-.748 1.196-1.597 1.632-2.916 1.632'/%3E%3C/svg%3E")}:where(.i-tabler\:alert-triangle){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v4m-1.637-9.409L2.257 17.125a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.87L13.637 3.59a1.914 1.914 0 0 0-3.274 0M12 16h.01'/%3E%3C/svg%3E")}:where(.i-tabler\:align-right){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16m-10 6h10M6 18h14'/%3E%3C/svg%3E")}:where(.i-tabler\:archive){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2m2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8m-9 4h4'/%3E%3C/svg%3E")}:where(.i-tabler\:arrow-bar-to-up){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v10m0-10l4 4m-4-4l-4 4M4 4h16'/%3E%3C/svg%3E")}:where(.i-tabler\:brand-github){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2c2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2a4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6c-.6.6-.6 1.2-.5 2V21'/%3E%3C/svg%3E")}:where(.i-tabler\:check){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m5 12l5 5L20 7'/%3E%3C/svg%3E")}:where(.i-tabler\:chevrons-up){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m7 11l5-5l5 5M7 17l5-5l5 5'/%3E%3C/svg%3E")}:where(.i-tabler\:circle-x){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0m7-2l4 4m0-4l-4 4'/%3E%3C/svg%3E")}:where(.i-tabler\:clock-edit){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M21 12a9 9 0 1 0-9.972 8.948q.48.051.972.052'/%3E%3Cpath d='M12 7v5l2 2m4.42 1.61a2.1 2.1 0 0 1 2.97 2.97L18 22h-3v-3z'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:color-swatch){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2'/%3E%3Cpath d='m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9'/%3E%3Cpath d='M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:device-desktop){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm4 15h10m-8-4v4m6-4v4'/%3E%3C/svg%3E")}:where(.i-tabler\:device-laptop){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z'/%3E%3C/svg%3E")}:where(.i-tabler\:files){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M15 3v4a1 1 0 0 0 1 1h4'/%3E%3Cpath d='M18 17h-7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4l5 5v7a2 2 0 0 1-2 2'/%3E%3Cpath d='M16 17v2a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:help-circle){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9 4v.01'/%3E%3Cpath d='M12 13a2 2 0 0 0 .914-3.782a1.98 1.98 0 0 0-2.414.483'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:home){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M5 12H3l9-9l9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:info-circle){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-3h.01'/%3E%3Cpath d='M11 12h1v4h1'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:layout-sidebar){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm5-2v16'/%3E%3C/svg%3E")}:where(.i-tabler\:layout-sidebar-filled){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M6 21a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM18 5h-8v14h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1'/%3E%3C/svg%3E")}:where(.i-tabler\:link){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11'/%3E%3C/svg%3E")}:where(.i-tabler\:mail){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpath d='m3 7l9 6l9-6'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:message){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9h8m-8 4h6m4-9a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z'/%3E%3C/svg%3E")}:where(.i-tabler\:message-circle){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m3 20l1.3-3.9C1.976 12.663 2.874 8.228 6.4 5.726c3.526-2.501 8.59-2.296 11.845.48c3.255 2.777 3.695 7.266 1.029 10.501S11.659 20.922 7.7 19z'/%3E%3C/svg%3E")}:where(.i-tabler\:message-dots){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 11v.01M8 11v.01m8-.01v.01M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z'/%3E%3C/svg%3E")}:where(.i-tabler\:moon){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z'/%3E%3C/svg%3E")}:where(.i-tabler\:pencil-minus){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6'/%3E%3C/svg%3E")}:where(.i-tabler\:pilcrow){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 4v16m4-16v16m2-16H9.5a4.5 4.5 0 0 0 0 9H13'/%3E%3C/svg%3E")}:where(.i-tabler\:rss){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 4a16 16 0 0 1 16 16M4 11a9 9 0 0 1 9 9'/%3E%3C/svg%3E")}:where(.i-tabler\:search){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6'/%3E%3C/svg%3E")}:where(.i-tabler\:share){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m12-6a3 3 0 1 0 6 0a3 3 0 1 0-6 0m0 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-6.3-7.3l6.6-3.4m-6.6 6l6.6 3.4'/%3E%3C/svg%3E")}:where(.i-tabler\:shield-check){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11.46 20.846A12 12 0 0 1 3.5 6A12 12 0 0 0 12 3a12 12 0 0 0 8.5 3a12 12 0 0 1-.09 7.06M15 19l2 2l4-4'/%3E%3C/svg%3E")}:where(.i-tabler\:sparkles-2){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 7a9.3 9.3 0 0 0 1.516-.546c.911-.438 1.494-1.015 1.937-1.932c.207-.428.382-.928.547-1.522c.165.595.34 1.095.547 1.521c.443.918 1.026 1.495 1.937 1.933c.426.205.925.38 1.516.546a9.3 9.3 0 0 0-1.516.547c-.911.438-1.494 1.015-1.937 1.932A9 9 0 0 0 17 11c-.165-.594-.34-1.095-.547-1.521c-.443-.918-1.026-1.494-1.937-1.932A9 9 0 0 0 13 7M3 14a21 21 0 0 0 1.652-.532c2.542-.953 3.853-2.238 4.816-4.806A20 20 0 0 0 10 7a20 20 0 0 0 .532 1.662c.963 2.567 2.275 3.853 4.816 4.806q.75.28 1.652.532a21 21 0 0 0-1.652.532c-2.542.953-3.854 2.238-4.816 4.806A20 20 0 0 0 10 21a20 20 0 0 0-.532-1.662c-.963-2.568-2.275-3.853-4.816-4.806A21 21 0 0 0 3 14'/%3E%3C/svg%3E")}:where(.i-tabler\:sun){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7'/%3E%3C/svg%3E")}:where(.i-tabler\:world-www){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M19.5 7A9 9 0 0 0 12 3a8.99 8.99 0 0 0-7.484 4'/%3E%3Cpath d='M11.5 3a17 17 0 0 0-1.826 4M12.5 3a17 17 0 0 1 1.828 4M19.5 17a9 9 0 0 1-7.5 4a8.99 8.99 0 0 1-7.484-4'/%3E%3Cpath d='M11.5 21a17 17 0 0 1-1.826-4m2.826 4a17 17 0 0 0 1.828-4M2 10l1 4l1.5-4L6 14l1-4m10 0l1 4l1.5-4l1.5 4l1-4M9.5 10l1 4l1.5-4l1.5 4l1-4'/%3E%3C/g%3E%3C/svg%3E")}:where(.i-tabler\:x){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E")}:where(.i-zi\:solar-rewind-back-bold-duotone){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M22 6.426v11.148c0 1.847-1.6 3.015-2.903 2.118L13 15.232V8.768l6.097-4.46C20.399 3.411 22 4.58 22 6.426' clip-rule='evenodd' opacity='.5'/%3E%3Cpath fill='black' d='M13 7.123v9.754c0 1.616-1.467 2.638-2.661 1.853L2.92 13.853c-1.228-.807-1.228-2.899 0-3.706l7.42-4.877c1.193-.785 2.66.237 2.66 1.853'/%3E%3C/svg%3E")}:where(.i-zi\:solar-rewind-forward-bold-duotone){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M2 6.426v11.148c0 1.847 1.6 3.015 2.903 2.118L11 15.232V8.768l-6.097-4.46C3.601 3.411 2 4.58 2 6.426' clip-rule='evenodd' opacity='.5'/%3E%3Cpath fill='black' d='M11 7.123v9.754c0 1.616 1.467 2.638 2.661 1.853l7.418-4.877c1.228-.807 1.228-2.899 0-3.706L13.66 5.27C12.467 4.485 11 5.507 11 7.123'/%3E%3C/svg%3E")}</style><link rel="preload" as="fetch" crossorigin="anonymous" href="/2024/lvm-guide/_payload.json?60b8f7e3-528f-4c2b-9e62-1e074e790a0f"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CjtitGm-.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/ByBrsI4N.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CbKlXP7T.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/cLXcJ7ln.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/D0CR25bc.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/Dv23rRis.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CrOKAa04.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/D0pyRTFk.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DZzfCfmQ.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CnAQwsc5.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B0-VmD33.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DTQCStlT.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/3goDaGp6.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/BjxDXSC-.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/D0pgsBx0.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CXvXZQfR.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DZld8LmC.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B-RhCLeq.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/gFwceoAe.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/snAFmtjP.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B5DCI0WH.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/BFhsjlPa.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CTnDsf0E.js"><script src="https://umami.olinl.com/olinl_u.js" data-website-id="71de627e-31d7-4e39-b44a-ad899c628a5b" defer></script><script src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;97a4fe32ed8240ac8284e9bffaf03962&quot;}" defer></script><script src="https://lib.baomitu.com/twikoo/1.6.44/twikoo.min.js" defer></script><script type="module" src="/_nuxt/CjtitGm-.js" crossorigin></script><link rel="icon" href="https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&spec=0"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="author" content="顾拾柒, olinl@foxmail.com"><meta name="color-scheme" content="light dark"><meta name="generator" content="Clarity 3.7.0" data-github-repo="https://github.com/L33Z22L11/blog-v3"><meta name="mobile-web-app-capable" content="yes"><meta property="og:type" content="article"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="description" content="本文详细的介绍了如何使用LVM进行创建分区,扩容分区等操作"><meta name="twitter:card" content="summary_large_image"><meta property="og:title" data-infer="" content="LVM 硬盘工具使用教程 | Olinl Blog"><meta property="og:description" data-infer="" content="本文详细的介绍了如何使用LVM进行创建分区,扩容分区等操作"><link rel="canonical" href="https://blog.olinl.com/2024/lvm-guide"><meta property="og:locale" content="zh_CN"><meta property="og:url" content="https://blog.olinl.com/2024/lvm-guide"><meta property="og:site_name" content="Olinl Blog"><script id="unhead:payload" type="application/json">{"templateParams":{"separator":"|"},"titleTemplate":"%s %separator Olinl Blog"}</script><script>"use strict";(()=>{const o=window,e=document.documentElement,c=["dark","light"],s=getStorageValue("localStorage","nuxt-color-mode")||"system";let r=s==="system"?f():s;const l=e.getAttribute("data-color-mode-forced");l&&(r=l),i(r),o["__NUXT_COLOR_MODE__"]={preference:s,value:r,getColorScheme:f,addColorScheme:i,removeColorScheme:d};function i(t){const a=""+t+"",n="";e.classList?e.classList.add(a):e.className+=" "+a,n&&e.setAttribute("data-"+n,t)}function d(t){const a=""+t+"",n="";e.classList?e.classList.remove(a):e.className=e.className.replace(new RegExp(a,"g"),""),n&&e.removeAttribute("data-"+n)}function u(t){return o.matchMedia("(prefers-color-scheme"+t+")")}function f(){if(o.matchMedia&&u("").media!=="not all"){for(const t of c)if(u(":"+t).matches)return t}return"light"}})();function getStorageValue(o,e){switch(o){case"localStorage":try{return window.localStorage.getItem(e)}catch{return null}case"sessionStorage":try{return window.sessionStorage.getItem(e)}catch{return null}case"cookie":try{return getCookie(e)}catch{return null}default:return null}}function getCookie(o){const c=("; "+window.document.cookie).split("; "+o+"=");if(c.length===2){const s=c.pop();return s?s.split(";").shift():null}}</script></head><body><div id="blog-root"><!--[--><div class="nuxt-loading-indicator" style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%);background-size:0% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;"></div><div style="position:absolute;"></div><a href="#main-content" class="skip-link gradient-card active" data-v-bce074b1> 跳转到主要内容 / Skip to content </a><article class="blog-toast" data-v-57d50f6b><img data-nuxt-img srcset="https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0 1x" onerror="this.setAttribute(&#39;data-error&#39;, 1)" class="toast-logo" alt src="https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0" data-v-57d50f6b><div class="toast-body" data-v-57d50f6b><p class="toast-title" data-v-57d50f6b>我们从 Firefly 迁移到新博客啦！</p><p class="toast-desc" data-v-57d50f6b>新博客，新起点～</p></div><button class="toast-close" aria-label="关闭" data-v-57d50f6b><span class="iconify i-tabler:x" aria-hidden="true" style="" data-v-57d50f6b></span></button></article><!--[--><!----><aside id="blog-sidebar" class="" data-v-c8ecc61d><a href="/" class="blog-header sidebar-header" data-v-c8ecc61d data-v-6d7a15c2><!--[--><div class="emoji-tail" data-v-6d7a15c2><!--[--><span class="split-char" style="--delay:-3.00s;" data-v-6d7a15c2>📄</span><span class="split-char" style="--delay:-2.40s;" data-v-6d7a15c2>🦌</span><span class="split-char" style="--delay:-1.80s;" data-v-6d7a15c2>🙌</span><span class="split-char" style="--delay:-1.20s;" data-v-6d7a15c2>🐟</span><span class="split-char" style="--delay:-0.60s;" data-v-6d7a15c2>🏖️</span><!--]--></div><img data-nuxt-img srcset="https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0 1x, https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0 1.5x, https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0 2x" onerror="this.setAttribute(&#39;data-error&#39;, 1)" class="blog-logo round-cobblestone circle" alt="Olinl Blog" src="https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0" data-v-6d7a15c2><div class="blog-text" data-v-6d7a15c2><div class="header-title" data-v-6d7a15c2><!--[--><span class="split-char" style="--delay:0.10s;" data-v-6d7a15c2>O</span><span class="split-char" style="--delay:0.20s;" data-v-6d7a15c2>l</span><span class="split-char" style="--delay:0.30s;" data-v-6d7a15c2>i</span><span class="split-char" style="--delay:0.40s;" data-v-6d7a15c2>n</span><span class="split-char" style="--delay:0.50s;" data-v-6d7a15c2>l</span><span class="split-char" style="--delay:0.60s;" data-v-6d7a15c2> </span><span class="split-char" style="--delay:0.70s;" data-v-6d7a15c2>B</span><span class="split-char" style="--delay:0.80s;" data-v-6d7a15c2>l</span><span class="split-char" style="--delay:0.90s;" data-v-6d7a15c2>o</span><span class="split-char" style="--delay:1.00s;" data-v-6d7a15c2>g</span><!--]--></div><div class="header-subtitle" data-v-6d7a15c2>分享、实践、学习</div></div><!--]--></a><nav class="sidebar-nav scrollcheck-y" data-v-c8ecc61d><div class="search-btn sidebar-nav-item gradient-card" data-v-c8ecc61d><span class="iconify i-tabler:search" aria-hidden="true" style="" data-v-c8ecc61d></span><span class="nav-text" data-v-c8ecc61d>搜索</span><!--[--><!--[--><kbd class="" data-v-4496d88e><!--[-->Ctrl+K<!--]--></kbd><!--]--><!--]--></div><!--[--><!--[--><!----><menu data-v-c8ecc61d><!--[--><li data-v-c8ecc61d><a href="/" class="sidebar-nav-item" data-v-c8ecc61d><!--[--><span class="iconify i-tabler:files" aria-hidden="true" style="" data-v-c8ecc61d></span><span class="nav-text" data-v-c8ecc61d>文章</span><!----><!--]--></a></li><li data-v-c8ecc61d><a href="/link" class="sidebar-nav-item" data-v-c8ecc61d><!--[--><span class="iconify i-tabler:link" aria-hidden="true" style="" data-v-c8ecc61d></span><span class="nav-text" data-v-c8ecc61d>友链</span><!----><!--]--></a></li><li data-v-c8ecc61d><a href="/archive" class="sidebar-nav-item" data-v-c8ecc61d><!--[--><span class="iconify i-tabler:archive" aria-hidden="true" style="" data-v-c8ecc61d></span><span class="nav-text" data-v-c8ecc61d>归档</span><!----><!--]--></a></li><li data-v-c8ecc61d><a href="/guestbook" class="sidebar-nav-item" data-v-c8ecc61d><!--[--><span class="iconify i-tabler:message" aria-hidden="true" style="" data-v-c8ecc61d></span><span class="nav-text" data-v-c8ecc61d>留言板</span><!----><!--]--></a></li><!--]--></menu><!--]--><!--]--></nav><footer class="sidebar-footer" data-v-c8ecc61d><div class="theme-toggle" data-v-c8ecc61d data-v-510d9a06><!--[--><button aria-label="浅色模式" class="" data-v-510d9a06><span class="iconify i-tabler:sun" aria-hidden="true" style="" data-v-510d9a06></span></button><button aria-label="跟随系统" class="active" data-v-510d9a06><span class="iconify i-tabler:device-desktop" aria-hidden="true" style="" data-v-510d9a06></span></button><button aria-label="深色模式" class="" data-v-510d9a06><span class="iconify i-tabler:moon" aria-hidden="true" style="" data-v-510d9a06></span></button><!--]--></div><menu data-v-c8ecc61d data-v-b08d7cdc><!--[--><a href="https://www.olinl.com/" rel="noopener noreferrer" target="_blank" aria-label="个人主页" data-v-b08d7cdc><!--[--><span class="iconify i-tabler:home" aria-hidden="true" style="" data-v-b08d7cdc></span><!--]--></a><a href="https://qm.qq.com/q/kIYB1Q8MP6" rel="noopener noreferrer" target="_blank" aria-label="交流群: 1105154206" data-v-b08d7cdc><!--[--><span class="iconify i-ri:qq-line" aria-hidden="true" style="" data-v-b08d7cdc></span><!--]--></a><a href="https://github.com/olinll" rel="noopener noreferrer" target="_blank" aria-label="GitHub: olinll" data-v-b08d7cdc><!--[--><span class="iconify i-tabler:brand-github" aria-hidden="true" style="" data-v-b08d7cdc></span><!--]--></a><a href="/atom.xml" rel="noopener noreferrer" target="_blank" aria-label="Atom订阅" data-v-b08d7cdc><!--[--><span class="iconify i-tabler:rss" aria-hidden="true" style="" data-v-b08d7cdc></span><!--]--></a><a href="https://www.travellings.cn/go.html" rel="noopener noreferrer" target="_blank" aria-label="开往 - 博客下一站" data-v-b08d7cdc><!--[--><span class="iconify i-ri:subway-line" aria-hidden="true" style="" data-v-b08d7cdc></span><!--]--></a><!--]--></menu></footer></aside><!--]--><div id="content"><main id="main-content"><!--[--><div class="post-header" data-v-15c7881c><!----><div class="post-nav" data-v-15c7881c><div class="operations" data-v-15c7881c><span class="iconify i-tabler:check" aria-hidden="true" style="display:none;" data-v-15c7881c></span><button class="button" data-v-15c7881c data-v-cd9f03ef><div class="button-main" data-v-cd9f03ef><span class="iconify i-tabler:share" aria-hidden="true" style="" data-v-cd9f03ef></span><!--[-->文字分享<!--]--></div><!----></button></div><div class="post-info" data-v-15c7881c><span title="2024-09-17 14:31:01" data-v-15c7881c><span class="iconify i-tabler:pencil-minus" aria-hidden="true" style=""></span><!--[--> <!--]--><time data-year="2-digit" data-month="long" data-day="numeric" data-numeric="auto" data-relative="false" data-title="false" datetime="2024-09-17T06:31:01.000Z" data-prehydrate-id=":z0yH6SRwXn:">September 17, 24</time></span><span title="2026-06-27 14:31:01" data-v-15c7881c><span class="iconify i-tabler:clock-edit" aria-hidden="true" style=""></span><!--[--> <!--]--><time data-month="long" data-day="numeric" data-numeric="auto" data-relative="true" data-title="false" datetime="2026-06-27T06:31:01.000Z" data-prehydrate-id=":z0yH6SRwXn:">2 hours ago</time></span><span data-v-15c7881c><span class="iconify i-tabler:device-laptop" aria-hidden="true" style="" data-v-15c7881c></span> 系统</span><span data-v-15c7881c><span class="iconify i-tabler:pilcrow" aria-hidden="true" style="" data-v-15c7881c></span> 3319 字 </span><!----></div></div><h1 class="text-tech post-title" data-v-15c7881c>LVM 硬盘工具使用教程</h1></div><div class="md-excerpt gradient-card" data-v-7e121c65><span class="dynamic" data-v-7e121c65><span class="iconify i-tabler:sparkles-2" aria-hidden="true" style="" data-v-7e121c65></span></span><span class="static" data-v-7e121c65><span class="iconify i-tabler:sparkles-2" aria-hidden="true" style="" data-v-7e121c65></span>本文详细的介绍了如何使用LVM进行创建分区,扩容分区等操作</span></div><article class="article md-tech"><blockquote><!--[--><p><!--[-->LVM是Linux系统中用于管理磁盘分区的命令行工具。该工具通过纯软件方式将多个块设备组织为逻辑卷，支持在线调整逻辑卷空间并集成快照功能以实现数据备份。<!--]--></p><!--]--></blockquote><div class="alert card" style="--c-primary:#3AF;" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:help-circle" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->版本差异说明<!--]--></div><!--[--><p><!--[-->此操作在 CentOS 7 下进行。CentOS 6 默认文件系统为 ext4（使用 <code data-v-b7d10303><!--[-->resize2fs<!--]--></code> 命令扩容），CentOS 7 起默认为 xfs（使用 <code data-v-b7d10303><!--[-->xfs_growfs<!--]--></code> 命令扩容）。写入 fstab 时需注意对应文件系统类型。<!--]--></p><!--]--></div><blockquote><!--[--><p><!--[-->ubuntu也可以使用此文档.<!--]--></p><!--]--></blockquote><h2 id="一安装lvm"><a href="#一安装lvm"><!--[-->一、安装LVM<!--]--></a></h2><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36># CentOS/RHEL系统
+yum  install -y lvm2
+
+# Ubuntu/Debian系统
+apt install -y lvm2
+</pre><!----></figure><h2 id="二命令大全"><a href="#二命令大全"><!--[-->二、命令大全<!--]--></a></h2><p><!--[-->这里就是常用的创建分区所有使用的命令了，注意部分命令例如<code data-v-b7d10303><!--[-->lsblk<!--]--></code> 只会提及一次，如想查看完整操作请看下一小节。<!--]--></p><figure class="z-codeblock collapsed collapsible" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36># 查看磁盘分区情况（虚拟磁盘通常是vdx、sata磁盘是sdx、nvme是nvmex）这里使用vdb作为演示
+lsblk
+# 使用parted工具操作磁盘（格式化磁盘）
+parted /dev/vdb
+	# 查看磁盘信息
+	print
+	# 修改为gpt分区表
+	mklabel gpt
+	# 创建主分区(如果创建一个分区，最后一个为最大容量)
+	mkpart primary 0 1045GB
+	# 如果有错误就忽略，如果有覆盖选项就Y覆盖
+	# 创建完成后可以再次运行print查看磁盘信息
+	
+	# 标记1分区为lvm
+	set 1 lvm on 
+	# 退出分区工具
+	quit
+# 重读分区表 可以再次运行lsblk进行查看分区
+partprobe /dev/vdb
+
+
+# ---------------------------创建分区操作---------------------------
+
+# PV操作
+## 创建pv (vdb1就是lsblk的vdb下面的一个分区)
+pvcreate -v /dev/vdb1
+## 查看pv 这里主要查看创建的pv有没有成功创建，注意这里可能会包含系统的pv
+pvdisplay
+
+# VG操作
+## 创建vg 这里的vg01就是创建的vg名称
+vgcreate -s 4M vg01 /dev/vdb1
+## 查看vg 这里同样会包含系统的vg
+vgdisplay
+
+
+# LV操作
+## 创建lv 这里的vg01就是vg名称 lv01就是创建的lv名称
+lvcreate  -l 100%FREE -n lv01 vg01
+## 查看lv 这里同样会包含系统的vg
+lvdisplay
+
+
+# 格式化分区 主要演示格式化为ext4
+## 主要语法为 mkfs.ext4 /dev/&lt;vg名称&gt;/&lt;lv名称&gt;
+mkfs.ext4 /dev/vg01/lv01
+
+# 进行挂载操作
+mkdir /app
+mount /dev/vg01/lv01 /app
+
+# 永久写入挂载点
+## 查看系统当前挂载信息
+blkid
+</pre><button class="toggle-btn" aria-label="展开代码块" data-v-b8f55e36><span class="iconify i-tabler:chevrons-up toggle-icon is-collapsed" aria-hidden="true" style="" data-v-b8f55e36></span><span data-v-b8f55e36>54 lines, 889 chars, 1.45 KiB</span></button></figure><div class="alert card" style="--c-primary:#F80;" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:alert-triangle" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->注意<!--]--></div><!--[--><p><!--[-->写入 <code data-v-b7d10303><!--[-->/etc/fstab<!--]--></code> 前务必确认 UUID 正确。错误的 UUID 或 fstab 条目会导致系统无法正常启动。建议先用 <code data-v-b7d10303><!--[-->mount<!--]--></code> 命令测试挂载是否正常，再写入 fstab。<!--]--></p><!--]--></div><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36>## 写入fstab文件
+echo &quot;UUID=&lt;UUID&gt; /app ext4 defaults 0 0&quot; &gt;&gt; /etc/fstab
+
+
+# ---------------------------扩容分区操作---------------------------
+
+# VG操作
+## 扩展vg，将pv全部扩展到vg下
+##vgextend &lt;VG Name&gt; &lt;PV Name&gt;
+vgextend vg01 /dev/vdb1
+# 查看LV
+lvdisplay
+
+# LV操作
+## 扩展lv，将vg全部扩展到lv下
+lvextend -l +100%FREE &lt;LV Path&gt;
+</pre><!----></figure><div class="alert card" style="--c-primary:#F80;" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:alert-triangle" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->注意<!--]--></div><!--[--><p><!--[-->缩容操作可能导致数据丢失！执行 <code data-v-b7d10303><!--[-->lvreduce<!--]--></code> 前必须先卸载文件系统并缩小文件系统大小，否则会损坏数据。建议缩容前做好完整备份。<!--]--></p><!--]--></div><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36>## 缩小lv分区
+lvreduce -L 100G  &lt;LV Path&gt;
+
+# 加载到系统
+## 参数为 LV path，**被扩容的挂载点一定是LVM格式
+xfs_growfs &lt;LV Path&gt;
+</pre><!----></figure><div class="alert card" style="--c-primary:#F80;" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:alert-triangle" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->删除分区操作<!--]--></div><!--[--><p><!--[-->以下操作包含 <code data-v-b7d10303><!--[-->lvremove<!--]--></code>、<code data-v-b7d10303><!--[-->vgremove<!--]--></code>、<code data-v-b7d10303><!--[-->rm -rf<!--]--></code> 等不可逆命令，执行前请确认数据已备份。删除 LV/VG 后数据将无法恢复。<!--]--></p><!--]--></div><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36># ---------------------------删除分区操作---------------------------
+
+# 删除挂载点
+## 如果fstab内有配置需要同步删除
+umount -v /dev/vg01/lv01
+## 删除目录（可选）
+rm -rf /app
+
+# LV操作
+## 删除LV
+lvremove /dev/vg01/lv01
+## 查看LV
+lvdisplay
+
+# VG操作
+## 删除vg
+vgremove vg01
+## 查看vg
+vgdisplay
+
+</pre><!----></figure><h2 id="三扩容分区"><a href="#三扩容分区"><!--[-->三、扩容分区<!--]--></a></h2><p><!--[-->在实际环境时，我们会遇到，硬盘临时扩容的情况。<!--]--></p><p><!--[-->解决方式分为2种。<!--]--></p><ol><!--[--><li><!--[-->把临时扩容的部分创建一个分区，合并到 root 的 lv 里面去<!--]--></li><li><!--[-->扩容当前的 lv<!--]--></li><!--]--></ol><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span class="filename" data-v-b8f55e36><span class="iconify i-catppuccin:file" aria-hidden="true" style="" data-v-b8f55e36></span> 方法1</span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>
+# 1. 查看当前PV情况
+pvdisplay
+
+# 2. 创建新分区（比如 sda3），类型设为 Linux LVM (8e)
+fdisk /dev/sda
+# 创建新主分区 sda3，使用所有剩余空间
+# t 设置类型为 8e
+# w 保存
+
+# 3. 刷新分区表
+partprobe /dev/sda
+
+# 4. 创建物理卷
+pvcreate /dev/sda3
+
+# 5. 扩展到现有卷组
+vgextend debian-vg /dev/sda3
+
+# 6. 扩展逻辑卷
+lvextend -l +100%FREE /dev/debian-vg/root
+
+# 7. 扩展文件系统
+resize2fs /dev/debian-vg/root
+
+</pre><!----></figure><figure class="z-codeblock collapsed collapsible" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span class="filename" data-v-b8f55e36><span class="iconify i-catppuccin:file" aria-hidden="true" style="" data-v-b8f55e36></span> 方法2</span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>
+# 检查当前分区表：
+fdisk /dev/sda
+# 按 p 查看分区表。注意 sda5 是从哪个分区扩展的（通常是 sda2的扩展分区）。
+
+# 删除并重建扩展分区（sda2）以包含所有空间：
+## 在 fdisk 中，按 d 删除分区，先删 5（扩展分区内的逻辑分区），再删 2（扩展分区本身）。
+## 按 n 创建新扩展分区（sda2），选择默认起始扇区，并将结束扇区设置为磁盘末尾（直接按回车使用最大空间）。
+## 按 t 将分区类型设置为 5（Extended）。
+
+# 重建逻辑分区 sda5：
+## 在 fdisk 中，按 n 创建逻辑分区（sda5），Partition #5 contains a LVM2_member signature. N 使用默认起始扇区，结束扇区同样设置为磁盘末尾。
+## 按 t 设置分区类型为 8e（Linux LVM）。
+
+# 保存并退出：
+## 按 w 保存更改并退出 fdisk。
+
+# 通知系统分区表变更：
+partprobe /dev/sda
+
+# 扩展物理卷（PV）：
+pvresize /dev/sda5
+
+# 扩展swap
+## 关闭 swap
+swapoff -a
+## 扩展lv
+lvextend -L 4G /dev/debian-vg/swap_1
+## 重新创建swap并启用
+mkswap /dev/debian-vg/swap_1
+swapon /dev/debian-vg/swap_1
+
+#扩展逻辑卷（LV）：
+lvextend -l +100%FREE /dev/debian-vg/root
+
+# 调整文件系统大小：如果是 ext4 文件系统：
+resize2fs /dev/debian-vg/root
+
+</pre><button class="toggle-btn" aria-label="展开代码块" data-v-b8f55e36><span class="iconify i-tabler:chevrons-up toggle-icon is-collapsed" aria-hidden="true" style="" data-v-b8f55e36></span><span data-v-b8f55e36>38 lines, 750 chars, 1.27 KiB</span></button></figure><h2 id="四真机实践"><a href="#四真机实践"><!--[-->四、真机实践<!--]--></a></h2><h3 id="_1-查看当前磁盘"><a href="#_1-查看当前磁盘"><!--[-->1. 查看当前磁盘<!--]--></a></h3><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# df -Th                                                     
+
+Filesystem              Type      Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root xfs        44G  3.7G   41G   9% /
+devtmpfs                devtmpfs  7.8G     0  7.8G   0% /dev
+tmpfs                   tmpfs     7.8G     0  7.8G   0% /dev/shm
+tmpfs                   tmpfs     7.8G  777M  7.0G  10% /run
+tmpfs                   tmpfs     7.8G     0  7.8G   0% /sys/fs/cgroup
+/dev/vda1               xfs      1014M  179M  836M  18% /boot
+tmpfs                   tmpfs     1.6G   36K  1.6G   1% /run/user/0
+tmpfs                   tmpfs     1.6G   40K  1.6G   1% /run/user/1001
+</pre><!----></figure><h3 id="_2-查看块分区"><a href="#_2-查看块分区"><!--[-->2. 查看块分区<!--]--></a></h3><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lsblk 
+
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+vda             252:0    0   50G  0 disk 
+├─vda1          252:1    0    1G  0 part /boot
+└─vda2          252:2    0   49G  0 part 
+  ├─centos-root 253:0    0   44G  0 lvm  /
+  └─centos-swap 253:1    0    5G  0 lvm  [SWAP]
+vdb             252:16   0  974G  0 disk
+</pre><!----></figure><p><!--[-->可以看到 /dev/vdb 为新增的磁盘<!--]--></p><h3 id="_3-格式化磁盘"><a href="#_3-格式化磁盘"><!--[-->3. 格式化磁盘<!--]--></a></h3><figure class="z-codeblock collapsed collapsible" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# parted /dev/vdb
+
+GNU Parted 3.1
+Using /dev/vdb
+Welcome to GNU Parted! Type &#39;help&#39; to view a list of commands.
+
+(parted) print
+
+Error: /dev/vdb: unrecognised disk label
+Model: Virtio Block Device (virtblk)                                      
+Disk /dev/vdb: 1046GB
+Sector size (logical/physical): 512B/512B
+Partition Table: unknown
+Disk Flags: 
+
+(parted) mklabel gpt    
+
+(parted) mkpart primary 0 1045GB
+
+Warning: The resulting partition is not properly aligned for best performance.
+Ignore/Cancel? i    
+
+(parted) print   
+
+Model: Virtio Block Device (virtblk)
+Disk /dev/vdb: 1046GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start   End     Size    File system  Name     Flags
+ 1      17.4kB  1045GB  1045GB               primary
+
+(parted) set 1 lvm on    
+
+(parted) print
+
+Model: Virtio Block Device (virtblk)
+Disk /dev/vdb: 1046GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start   End     Size    File system  Name     Flags
+ 1      17.4kB  1045GB  1045GB               primary  lvm
+
+(parted) quit   
+
+Information: You may need to update /etc/fstab
+
+</pre><button class="toggle-btn" aria-label="展开代码块" data-v-b8f55e36><span class="iconify i-tabler:chevrons-up toggle-icon is-collapsed" aria-hidden="true" style="" data-v-b8f55e36></span><span data-v-b8f55e36>50 lines, 1170 chars, 1.14 KiB</span></button></figure><p><!--[-->以上 (parted) 开头的代表输入的命令，具体功能可以通过 help 查看<!--]--></p><h3 id="_4-重读分区表"><a href="#_4-重读分区表"><!--[-->4. 重读分区表<!--]--></a></h3><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>partprobe /dev/vdb
+</pre><!----></figure><h3 id="_5-重新查看块分区"><a href="#_5-重新查看块分区"><!--[-->5. 重新查看块分区<!--]--></a></h3><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lsblk 
+NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+vda             252:0    0    50G  0 disk 
+├─vda1          252:1    0     1G  0 part /boot
+└─vda2          252:2    0    49G  0 part 
+  ├─centos-root 253:0    0    44G  0 lvm  /
+  └─centos-swap 253:1    0     5G  0 lvm  [SWAP]
+vdb             252:16   0   974G  0 disk 
+└─vdb1          252:17   0 973.2G  0 part
+</pre><!----></figure><p><!--[-->可以看到vdb下多了vdb1，这个用来创建pv<!--]--></p><h3 id="_6-创建pv"><a href="#_6-创建pv"><!--[-->6. 创建PV<!--]--></a></h3><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# pvcreate -v /dev/vdb1
+    Wiping internal VG cache
+    Wiping cache of LVM-capable devices
+    Wiping signatures on new PV /dev/vdb1.
+    Set up physical volume for &quot;/dev/vdb1&quot; with 2041015592 available sectors.
+    Zeroing start of device /dev/vdb1.
+    Writing physical volume data to disk &quot;/dev/vdb1&quot;.
+  Physical volume &quot;/dev/vdb1&quot; successfully created.
+</pre><!----></figure><div class="alert card" style="--c-primary:var(--c-text-1);" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:info-circle" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->扩容前提条件<!--]--></div><!--[--><p><!--[-->PV 创建好之后，到这一步可以选择扩展或者新建挂载点。<strong><!--[-->扩容的前提条件是扩容挂载点的磁盘格式必须是 LVM 格式<!--]--></strong>，非 LVM 格式的分区无法直接扩容。<!--]--></p><!--]--></div><p><!--[-->这里先演示新建挂载点然后删除挂载点并扩容<!--]--></p><h3 id="_7-新增lvm挂载"><a href="#_7-新增lvm挂载"><!--[-->7. 新增LVM挂载<!--]--></a></h3><h4 id="查看pv"><a href="#查看pv"><!--[-->查看PV<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/vda2
+  VG Name               centos
+  PV Size               &lt;49.00 GiB / not usable 3.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              12543
+  Free PE               0
+  Allocated PE          12543
+  PV UUID               CCUeq0-ZnG9-iUY8-dPOj-fVOa-XC10-ooGyle
+   
+  &quot;/dev/vdb1&quot; is a new physical volume of &quot;973.23 GiB&quot;
+  --- NEW Physical volume ---
+  PV Name               /dev/vdb1
+  VG Name               
+  PV Size               973.23 GiB
+  Allocatable           NO
+  PE Size               0   
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               vUoC7C-MIP2-iwXr-0SWu-c2Wz-yb6o-qFrfo1
+</pre><!----></figure><p><!--[-->注意看 VG Name，前面的是系统安装时选择LVM格式的，后面的还没有创建，所以 VG Name 为空<!--]--></p><h4 id="新建vg"><a href="#新建vg"><!--[-->新建VG<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# vgcreate -s 4M vg01 /dev/vdb1
+  Volume group &quot;vg01&quot; successfully created
+</pre><!----></figure><h4 id="查看vg"><a href="#查看vg"><!--[-->查看VG<!--]--></a></h4><figure class="z-codeblock collapsed collapsible" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# vgdisplay
+  --- Volume group ---
+  VG Name               vg01
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  1
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               973.23 GiB
+  PE Size               4.00 MiB
+  Total PE              249147
+  Alloc PE / Size       0 / 0   
+  Free  PE / Size       249147 / 973.23 GiB
+  VG UUID               hb8zoy-kKjU-VXD5-EjCN-8hS2-MOzf-lq3O5j
+   
+  --- Volume group ---
+  VG Name               centos
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  3
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               2
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               &lt;49.00 GiB
+  PE Size               4.00 MiB
+  Total PE              12543
+  Alloc PE / Size       12543 / &lt;49.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               kSwsMj-4FKB-zwFq-7MBq-EfOD-rccg-HC59x9
+</pre><button class="toggle-btn" aria-label="展开代码块" data-v-b8f55e36><span class="iconify i-tabler:chevrons-up toggle-icon is-collapsed" aria-hidden="true" style="" data-v-b8f55e36></span><span data-v-b8f55e36>42 lines, 1288 chars, 1.26 KiB</span></button></figure><p><!--[-->可以看到 vg01 为新建的VG<!--]--></p><h4 id="新建lv"><a href="#新建lv"><!--[-->新建LV<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lvcreate  -l 100%FREE -n lv01 vg01
+  Logical volume &quot;lv01&quot; created
+</pre><!----></figure><h4 id="格式化lv"><a href="#格式化lv"><!--[-->格式化LV<!--]--></a></h4><div class="alert card" style="--c-primary:#F33;" data-v-f42b30ea><div class="alert-title" data-v-f42b30ea><span class="iconify i-tabler:circle-x" aria-hidden="true" style="" data-v-f42b30ea></span><!--[-->高危操作！<!--]--></div><!--[--><p><!--[-->格式化操作会清除分区上的所有数据，请确认分区正确且无重要数据。<!--]--></p><!--]--></div><p><!--[-->格式化文件系统类型有xfs，ext4，这里测试使用ext4格式，<strong><!--[-->默认centos7下使用xfs格式，centos6为ext4格式<!--]--></strong><!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# mkfs.ext4 /dev/vg01/lv01
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+63782912 inodes, 255126528 blocks
+12756326 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=2403336192
+7786 block groups
+32768 blocks per group, 32768 fragments per group
+8192 inodes per group
+Superblock backups stored on blocks: 
+        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+        4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+        102400000, 214990848
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information: done
+</pre><!----></figure><h4 id="新建挂载点并挂载"><a href="#新建挂载点并挂载"><!--[-->新建挂载点并挂载<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>mkdir /app
+mount /dev/vg01/lv01 /app
+</pre><!----></figure><h4 id="查看新增挂载后的块分区"><a href="#查看新增挂载后的块分区"><!--[-->查看新增挂载后的块分区<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lsblk 
+NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+vda             252:0    0    50G  0 disk 
+├─vda1          252:1    0     1G  0 part /boot
+└─vda2          252:2    0    49G  0 part 
+  ├─centos-root 253:0    0    44G  0 lvm  /
+  └─centos-swap 253:1    0     5G  0 lvm  [SWAP]
+vdb             252:16   0   974G  0 disk 
+└─vdb1          252:17   0 973.2G  0 part 
+  └─vg01-lv01   253:2    0 973.2G  0 lvm  /app
+</pre><!----></figure><p><!--[-->可以看到新增磁盘以LVM格式挂载在 /app 下<!--]--></p><h4 id="永久写入挂载点"><a href="#永久写入挂载点"><!--[-->永久写入挂载点<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36>blkid
+
+#/dev/mapper/vg01-lv01 on /opt type ext4 (rw,relatime)
+
+# echo &quot;UUID=&lt;UUID&gt; /app ext4 defaults 0 0&quot; &gt;&gt; /etc/fstab
+</pre><!----></figure><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>shell</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-shell shiki scrollcheck-x" data-v-b8f55e36>[root@docker-server ~]# blkid
+/dev/sda1: SEC_TYPE=&quot;msdos&quot; UUID=&quot;F312-EB5D&quot; TYPE=&quot;vfat&quot; PARTLABEL=&quot;EFI System Partition&quot; PARTUUID=&quot;7526c319-8c70-4fa9-ad1a-7a9a906c0f7c&quot;
+/dev/sda2: UUID=&quot;a169778d-bcee-41d3-899e-aa68e670eb54&quot; TYPE=&quot;xfs&quot; PARTUUID=&quot;b9de11c9-a9a8-46c7-8484-a3f0450f648f&quot;
+/dev/sda3: UUID=&quot;4WIoYK-aQng-dGMv-YYjq-RXaj-XKMV-o0RYCL&quot; TYPE=&quot;LVM2_member&quot; PARTUUID=&quot;b0ebc437-996e-4a3c-b6d3-cf5692413688&quot;
+/dev/sdb1: UUID=&quot;PHHm7S-6haw-EeGN-2xRl-Cxna-3C9N-4QlPIy&quot; TYPE=&quot;LVM2_member&quot; PARTLABEL=&quot;primary&quot; PARTUUID=&quot;68320f1b-25b0-4070-8a22-79af2af7aa69&quot;
+/dev/mapper/centos-root: UUID=&quot;375718d4-698b-4709-b721-2c652a87c118&quot; TYPE=&quot;xfs&quot;
+/dev/mapper/centos-swap: UUID=&quot;d7e852bb-0ef8-4545-a3cb-4fb12b8fb9ff&quot; TYPE=&quot;swap&quot;
+# lvm
+/dev/mapper/vg01-lv01: UUID=&quot;37bbfff9-76da-4515-a9e5-b8820ea523e5&quot; TYPE=&quot;ext4&quot; 
+/dev/mapper/centos-home: UUID=&quot;d3f5743c-588a-4bc1-bb6a-51775db4713e&quot; TYPE=&quot;xfs&quot;
+[root@docker-server ~]# cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Wed Jul  3 21:16:34 2024
+#
+# Accessible filesystems, by reference, are maintained under &#39;/dev/disk&#39;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=a169778d-bcee-41d3-899e-aa68e670eb54 /boot                   xfs     defaults        0 0
+UUID=F312-EB5D          /boot/efi               vfat    umask=0077,shortname=winnt 0 0
+/dev/mapper/centos-home /home                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+# 写入
+UUID=37bbfff9-76da-4515-a9e5-b8820ea523e5 /app ext4 defaults 0 0
+
+</pre><!----></figure><h3 id="_8-删除lvm挂载点"><a href="#_8-删除lvm挂载点"><!--[-->8. 删除LVM挂载点<!--]--></a></h3><h4 id="删除挂载点"><a href="#删除挂载点"><!--[-->删除挂载点<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# umount -v /dev/vg01/lv01
+umount: /app (/dev/mapper/vg01-lv01) unmounted
+</pre><!----></figure><h4 id="查看块设备"><a href="#查看块设备"><!--[-->查看块设备<!--]--></a></h4><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lsblk 
+NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+vda             252:0    0    50G  0 disk 
+├─vda1          252:1    0     1G  0 part /boot
+└─vda2          252:2    0    49G  0 part 
+  ├─centos-root 253:0    0    44G  0 lvm  /
+  └─centos-swap 253:1    0     5G  0 lvm  [SWAP]
+vdb             252:16   0   974G  0 disk 
+└─vdb1          252:17   0 973.2G  0 part 
+  └─vg01-lv01   253:2    0 973.2G  0 lvm
+</pre><!----></figure><p><!--[-->可以看到 /app 挂载点删除了，删除 /app 目录<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>rm -rf /app
+</pre><!----></figure><h4 id="删除lv"><a href="#删除lv"><!--[-->删除LV<!--]--></a></h4><p><!--[-->参数为 LV Path<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lvremove /dev/vg01/lv01
+Do you really want to remove active logical volume vg01/lv01? [y/n]: y
+  Logical volume &quot;lv01&quot; successfully removed
+</pre><!----></figure><h4 id="删除vg"><a href="#删除vg"><!--[-->删除VG<!--]--></a></h4><p><!--[-->参数为 VG Name<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# vgremove vg01
+  Volume group &quot;vg01&quot; successfully removed
+</pre><!----></figure><h4 id="扩容vg"><a href="#扩容vg"><!--[-->扩容VG<!--]--></a></h4><p><!--[-->参数为 VG Name 和 PV Name<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# vgextend centos /dev/vdb1
+  Volume group &quot;centos&quot; successfully extended
+</pre><!----></figure><p><!--[-->此时 PV /dev/vdb1 全部扩展到 VG centos下<!--]--></p><h4 id="查看lv"><a href="#查看lv"><!--[-->查看LV<!--]--></a></h4><figure class="z-codeblock collapsed collapsible" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lvdisplay 
+  --- Logical volume ---
+  LV Path                /dev/centos/swap
+  LV Name                swap
+  VG Name                centos
+  LV UUID                PCx0yU-o9JZ-R92O-lI01-f8EU-DKyM-etst0H
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2018-12-24 16:46:31 +0800
+  LV Status              available
+  # open                 2
+  LV Size                5.00 GiB
+  Current LE             1280
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:1
+   
+  --- Logical volume ---
+  LV Path                /dev/centos/root
+  LV Name                root
+  VG Name                centos
+  LV UUID                Idf9IO-AxkA-tS1C-FTgN-FsLT-d3Zk-7o1W5E
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2018-12-24 16:46:31 +0800
+  LV Status              available
+  # open                 1
+  LV Size                &lt;44.00 GiB
+  Current LE             11263
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:0
+</pre><button class="toggle-btn" aria-label="展开代码块" data-v-b8f55e36><span class="iconify i-tabler:chevrons-up toggle-icon is-collapsed" aria-hidden="true" style="" data-v-b8f55e36></span><span data-v-b8f55e36>34 lines, 1208 chars, 1.18 KiB</span></button></figure><p><!--[-->通过查看，系统安装时选择的磁盘格式是LVM并且有两个分区，接下来扩展根分区<!--]--></p><h4 id="扩展lv分区"><a href="#扩展lv分区"><!--[-->扩展LV分区<!--]--></a></h4><p><!--[-->参数为 LV Path<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lvextend -l +100%FREE /dev/centos/root
+  Size of logical volume centos/root changed from &lt;44.00 GiB (11263 extents) to &lt;1017.23 GiB (260410 extents).
+  Logical volume centos/root successfully resized
+</pre><!----></figure><p><!--[-->如果发现误操作，需要还原，可以通过以下命令缩小LV分区<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>lvreduce -L 1017.2G  /dev/centos/root
+</pre><!----></figure><h4 id="加载扩容到系统"><a href="#加载扩容到系统"><!--[-->加载扩容到系统<!--]--></a></h4><p><!--[-->此时查看系统可以看到已经扩容，但没有加载到文件系统<!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# lsblk 
+NAME            MAJ:MIN RM    SIZE RO TYPE MOUNTPOINT
+vda             252:0    0     50G  0 disk 
+├─vda1          252:1    0      1G  0 part /boot
+└─vda2          252:2    0     49G  0 part 
+  ├─centos-root 253:0    0 1017.2G  0 lvm  /
+  └─centos-swap 253:1    0      5G  0 lvm  [SWAP]
+vdb             252:16   0    974G  0 disk 
+└─vdb1          252:17   0  973.2G  0 part 
+  └─centos-root 253:0    0 1017.2G  0 lvm  /
+[root@fsddxtclgj9vm900419 ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root   44G  3.7G   41G   9% /
+devtmpfs                 7.8G     0  7.8G   0% /dev
+tmpfs                    7.8G     0  7.8G   0% /dev/shm
+tmpfs                    7.8G  777M  7.0G  10% /run
+tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
+/dev/vda1               1014M  179M  836M  18% /boot
+tmpfs                    1.6G   36K  1.6G   1% /run/user/0
+tmpfs                    1.6G   40K  1.6G   1% /run/user/1001
+</pre><!----></figure><p><!--[--><strong><!--[-->加载扩容到系统<!--]--></strong><!--]--></p><p><!--[-->参数为 LV path，<strong><!--[-->被扩容的挂载点一定是LVM格式<!--]--></strong><!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# xfs_growfs /dev/centos/root
+meta-data=/dev/mapper/centos-root isize=512    agcount=4, agsize=2883328 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0 spinodes=0
+data     =                       bsize=4096   blocks=11533312, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal               bsize=4096   blocks=5631, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 11533312 to 266659840
+</pre><!----></figure><p><!--[-->说明：若使用ext4文件格式（centos6），是使用resize2fs命令来生效<!--]--></p><p><!--[--><strong><!--[-->查看磁盘<!--]--></strong><!--]--></p><figure class="z-codeblock" style="--collapsed-rows:16;--tab-size:3;" data-v-b8f55e36><figcaption data-v-b8f55e36><span data-v-b8f55e36></span><span class="language" data-v-b8f55e36>bash</span><div class="operations" data-v-b8f55e36><button data-v-b8f55e36>自动换行</button><button data-v-b8f55e36>复制</button></div></figcaption><pre class="language-bash shiki scrollcheck-x" data-v-b8f55e36>[root@fsddxtclgj9vm900419 ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root 1018G  3.7G 1014G   1% /
+devtmpfs                 7.8G     0  7.8G   0% /dev
+tmpfs                    7.8G     0  7.8G   0% /dev/shm
+tmpfs                    7.8G  777M  7.0G  10% /run
+tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
+/dev/vda1               1014M  179M  836M  18% /boot
+tmpfs                    1.6G   36K  1.6G   1% /run/user/0
+tmpfs                    1.6G   40K  1.6G   1% /run/user/1001
+</pre><!----></figure></article><div class="post-footer" data-v-1cea170b><!----><!----><!--[--><section data-v-1cea170b><div class="title text-creative" data-v-1cea170b>许可协议</div><div class="content" data-v-1cea170b><!--[--><p data-v-1cea170b> 本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener noreferrer" target="_blank" class="z-link" data-v-1cea170b data-v-84e39d9a><!--[--><span class="iconify i-ri:creative-commons-line domain-icon" aria-hidden="true" style="" data-v-84e39d9a></span><!--[-->署名-非商业性使用-相同方式共享 4.0 国际<!--]--><!--]--></a> 许可协议，转载请注明出处。 </p><!--]--></div></section><!--]--></div><!--[--><!----><div class="surround-post" dir="ltr" data-v-07dd1310><!--[--><a href="/2025/chrome-hardware" class="surround-link" data-v-07dd1310><!--[--><span class="iconify i-zi:solar-rewind-back-bold-duotone rtl-flip" aria-hidden="true" style="" data-v-07dd1310></span><div class="surround-text" data-v-07dd1310><strong class="title text-tech" data-v-07dd1310>Chrome硬件加速功能开启与关闭</strong><span title="2025-03-31 10:07:47" class="date" data-v-07dd1310><!----><!----><time data-year="2-digit" data-month="long" data-day="numeric" data-numeric="auto" data-relative="false" data-title="false" datetime="2025-03-31T02:07:47.000Z" data-prehydrate-id=":z0yH6SRwXn:">March 31, 25</time></span></div><!--]--></a><!--]--><!--[--><a href="/2024/squid-proxy" class="surround-link" align-end data-v-07dd1310><!--[--><span class="iconify i-zi:solar-rewind-forward-bold-duotone rtl-flip" aria-hidden="true" style="" data-v-07dd1310></span><div class="surround-text" data-v-07dd1310><strong class="title text-tech" data-v-07dd1310>使用 Squid 为内网服务器搭建 HTTP 代理</strong><span title="2024-07-20 09:48:41" class="date" data-v-07dd1310><!----><!----><time data-year="2-digit" data-month="long" data-day="numeric" data-numeric="auto" data-relative="false" data-title="false" datetime="2024-07-20T01:48:41.000Z" data-prehydrate-id=":z0yH6SRwXn:">July 20, 24</time></span></div><!--]--></a><!--]--></div><!--]--><section class="z-comment" data-v-dceb7dfa><h3 class="text-creative comment-title" data-v-dceb7dfa><span data-v-dceb7dfa>评论区</span><!--[--><span class="comment-count hidden"><span class="iconify i-tabler:message-circle" aria-hidden="true" style=""></span> 0</span><!--]--></h3><span data-v-tippy data-v-dceb7dfa><!--[--><!--]--><span style="display:none;" class=""><div class="popover-confirm" data-v-dceb7dfa><span class="input" contenteditable="plaintext-only" spellcheck="false" data-v-dceb7dfa></span><!----><button class="button primary" data-v-dceb7dfa data-v-cd9f03ef><div class="button-main" data-v-cd9f03ef><!----><!--[-->访问<!--]--></div><!----></button></div></span></span><div id="twikoo" data-v-dceb7dfa><p data-v-dceb7dfa>评论加载中...</p></div></section><!--]--><footer class="blog-footer" data-v-87318c93><nav class="footer-nav" data-v-87318c93><!--[--><div data-v-87318c93><hgroup class="text-creative" data-v-87318c93>探索</hgroup><menu data-v-87318c93><!--[--><li data-v-87318c93><a href="/atom.xml" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:rss" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>Atom订阅</span><!--]--></a></li><li data-v-87318c93><a href="https://www.travellings.cn/go.html" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-ri:subway-line" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>开往</span><!--]--></a></li><!--]--></menu></div><div data-v-87318c93><hgroup class="text-creative" data-v-87318c93>社交</hgroup><menu data-v-87318c93><!--[--><li data-v-87318c93><a href="https://github.com/olinll" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:brand-github" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>olinll</span><!--]--></a></li><li data-v-87318c93><a href="https://qm.qq.com/q/kIYB1Q8MP6" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-ri:qq-line" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>群: 1105154206</span><!--]--></a></li><li data-v-87318c93><a href="mailto:olinl@foxmail.com" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:mail" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>olinl@foxmail.com</span><!--]--></a></li><!--]--></menu></div><div data-v-87318c93><hgroup class="text-creative" data-v-87318c93>信息</hgroup><menu data-v-87318c93><!--[--><li data-v-87318c93><a href="https://github.com/L33Z22L11/blog-v3" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-simple-icons:nuxt" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>主题: Clarity 3.7.0</span><!--]--></a></li><li data-v-87318c93><a href="https://blog.zhilu.site/theme" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:color-swatch" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>主题和组件文档</span><!--]--></a></li><li data-v-87318c93><a href="https://beian.miit.gov.cn/" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:world-www" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>苏ICP备2022020192号-1</span><!--]--></a></li><li data-v-87318c93><a href="https://beian.mps.gov.cn/web/beian/32021302003009/" rel="noopener noreferrer" target="_blank" data-v-87318c93><!--[--><span class="iconify i-tabler:shield-check" aria-hidden="true" style="" data-v-87318c93></span><span class="nav-text" data-v-87318c93>苏公网安备32021302003009号</span><!--]--></a></li><!--]--></menu></div><!--]--></nav><p data-v-87318c93>© 2026 顾拾柒</p></footer></main><!--[--><!----><aside id="blog-aside" class="" data-v-6f31540b><!--[--><section class="blog-widget shrink" style="min-height:clamp(4rem, 0rem, 20rem);" data-v-6f31540b data-v-5e9b7b8e data-v-43b44f9c><hgroup class="widget-header text-creative" data-v-43b44f9c><!--[-->文章目录<!--]--><span class="seperator" data-v-43b44f9c></span><!--[--><a href="#main-content" aria-label="返回开头" data-v-5e9b7b8e><span class="iconify i-tabler:arrow-bar-to-up" aria-hidden="true" style="" data-v-5e9b7b8e></span></a><a href="#twikoo" aria-label="评论区" data-v-5e9b7b8e><span class="iconify i-tabler:message-dots" aria-hidden="true" style="" data-v-5e9b7b8e></span></a><!--]--></hgroup><div class="scrollcheck-y scrollbar-hidden widget-body" data-v-43b44f9c><!----><!--[--><!----><p class="no-toc" data-v-5e9b7b8e> 暂无目录信息 </p><!--]--></div></section><!--]--></aside><!--]--></div><div id="blog-panel" class="" style="transform:;" data-v-63b45602><button class="toggle-aside widescreen-only" aria-label="切换侧边栏" data-v-63b45602><span class="iconify i-tabler:align-right rtl-flip" aria-hidden="true" style="" data-v-63b45602></span></button><span class="iconify i-tabler:layout-sidebar-filled" aria-hidden="true" style="display:none;" data-v-63b45602></span><button class="toggle-sidebar mobile-only" aria-label="切换菜单" data-v-63b45602><span class="iconify i-tabler:layout-sidebar rtl-flip" aria-hidden="true" style="" data-v-63b45602></span></button></div><!--[--><!--]--><!--]--></div><div id="teleports"></div><script data-hid=":z0yH6SRwXn:">document.querySelectorAll('[data-prehydrate-id*=":z0yH6SRwXn:"]').forEach(e=>{let t=window._nuxtTimeNow||=Date.now(),n=(e,t)=>t>0?e[0].toUpperCase()+e.slice(1):e,r=e.getAttribute(`datetime`);if(!r)return;let i=new Date(r);if(Number.isNaN(i.getTime()))return;let a={};for(let t of e.getAttributeNames())if(t.startsWith(`data-`)){let r=t.slice(5).split(`-`).map(n).join(``);r===`relativeStyle`&&(r=`style`);let i=e.getAttribute(t);a[r]=i===`true`?!0:i===`false`?!1:i}if(a.relative){let n=(i.getTime()-t)/1e3,r=[{unit:`second`,seconds:1,threshold:60},{unit:`minute`,seconds:60,threshold:60},{unit:`hour`,seconds:3600,threshold:24},{unit:`day`,seconds:86400,threshold:30},{unit:`month`,seconds:2592e3,threshold:12},{unit:`year`,seconds:31536e3,threshold:1/0}],{unit:o,seconds:s}=r.find(({seconds:e,threshold:t})=>Math.abs(n/e)<t)||r[r.length-1],c=n/s;e.textContent=new Intl.RelativeTimeFormat(a.locale,a).format(Math.round(c),o)}else e.textContent=new Intl.DateTimeFormat(a.locale,a).format(i)})</script><script>window.__NUXT__={};window.__NUXT__.config={public:{arch:"x64",buildTime:"2026-06-27T08:09:53.256+00:00[UTC]",cdn:"EdgeOne",ci:"GitHub Actions",nodeVersion:"v22.23.0",platform:"linux",mdc:{components:{prose:true,map:{},customElements:[]},headings:{anchorLinks:{h1:false,h2:true,h3:true,h4:true,h5:false,h6:false}},highlight:false},"nuxt-seo-utils-version":"8.3.1","seo-utils":{canonicalQueryWhitelist:["page","sort","filter","search","q","category","tag"],canonicalLowercase:true,tagPriority:"low",separator:"|",titleSeparator:""},content:{wsUrl:""},"nuxt-robots":{version:"6.1.1",isNuxtContentV2:false,debug:false,credits:true,groups:[{userAgent:["*"],disallow:["/preview","/previews/*"],allow:[],contentUsage:[],contentSignal:[],_indexable:true,_rules:[{pattern:"/preview",allow:false},{pattern:"/previews/*",allow:false}],_normalized:true}],sitemap:["/sitemap.xml"],header:true,robotsEnabledValue:"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",robotsDisabledValue:"noindex, nofollow",cacheControl:"max-age=14400, must-revalidate",botDetection:true,pageMetaRobots:{}}},app:{baseURL:"/",buildId:"60b8f7e3-528f-4c2b-9e62-1e074e790a0f",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/ld+json" data-nuxt-schema-org="true" data-hid="schema-org-graph">{"@context":"https://schema.org","@graph":[{"@id":"https://blog.olinl.com/#website","@type":"WebSite","inLanguage":"zh-CN","name":"Olinl Blog","url":"https://blog.olinl.com/"},{"@id":"https://blog.olinl.com/2024/lvm-guide#webpage","@type":"WebPage","name":"LVM 硬盘工具使用教程","url":"https://blog.olinl.com/2024/lvm-guide","isPartOf":{"@id":"https://blog.olinl.com/#website"},"potentialAction":[{"@type":"ReadAction","target":["https://blog.olinl.com/2024/lvm-guide"]}]}]}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__" data-src="/2024/lvm-guide/_payload.json?60b8f7e3-528f-4c2b-9e62-1e074e790a0f">[{"state":1,"once":16,"_errors":17,"serverRendered":5,"path":19,"pinia":20,"prerenderedAt":40},["Reactive",2],{"$scolor-mode":3,"$snuxt-seo-utils:routeRules":7,"$ssite-config":8},{"preference":4,"value":4,"unknown":5,"forced":6},"system",true,false,{"head":-1,"seoMeta":-1},{"_priority":9,"defaultLocale":12,"env":13,"name":14,"url":15},{"env":10,"name":11,"url":11,"defaultLocale":11},-15,-3,"zh-CN","production","Olinl Blog","https://blog.olinl.com/",["Set"],["ShallowReactive",18],{"content:/2024/lvm-guide":-1,"surround:/2024/lvm-guide":-1},"/2024/lvm-guide",["Reactive",21],{"layout":22,"search":32,"modal":36,"shiki":39},{"state":23,"asideWidgets":25,"avoidTargets":29},["Ref",24],"none",["Ref",26],["Reactive",27],[28],"toc",["Ref",30],["Reactive",31],[],{"word":33,"debouncedWord":35},["EmptyRef",34],"\"\"",["EmptyShallowRef",34],{"modals":37},["ShallowReactive",38],[],{},1782547830279]</script></body></html>

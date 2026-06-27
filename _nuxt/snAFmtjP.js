@@ -1,0 +1,1 @@
+import{_ as r,o as s,c as o,r as n}from"./CjtitGm-.js";const t={};function c(e,a){return s(),o("li",null,[n(e.$slots,"default")])}const _=Object.assign(r(t,[["render",c]]),{__name:"ProseLi"});export{_ as default};

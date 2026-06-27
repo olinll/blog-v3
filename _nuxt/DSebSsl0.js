@@ -1,0 +1,1 @@
+import{d as s,o as a,c as o,r,n,t as c,_}from"./CjtitGm-.js";const l={class:"blur"},p=s({__name:"Blur",props:{text:{}},setup(e){return(t,u)=>(a(),o("span",l,[r(t.$slots,"default",{},()=>[n(c(e.text),1)],!0)]))}}),f=Object.assign(_(p,[["__scopeId","data-v-f230e5bb"]]),{__name:"Blur"});export{f as default};

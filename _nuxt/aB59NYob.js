@@ -1,0 +1,1 @@
+import{_ as r,o as s,c as o,r as t}from"./CjtitGm-.js";const n={};function c(e,a){return s(),o("td",null,[t(e.$slots,"default")])}const l=Object.assign(r(n,[["render",c]]),{__name:"ProseTd"});export{l as default};

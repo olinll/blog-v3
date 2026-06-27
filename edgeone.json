@@ -1,0 +1,29 @@
+{
+  "headers": [
+    {
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "source": "/api/*"
+    },
+    {
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        }
+      ],
+      "source": "*.opml"
+    }
+  ],
+  "redirects": [
+    {
+      "destination": "https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&spec=0",
+      "source": "/favicon.ico",
+      "status": 308
+    }
+  ]
+}

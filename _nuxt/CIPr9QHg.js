@@ -1,0 +1,1 @@
+import{d as s,o,c as n,a as l,r as t,n as r,t as d,_ as i}from"./CjtitGm-.js";const c=s({__name:"Folding",props:{title:{}},setup(a){return(e,_)=>(o(),n("details",null,[l("summary",null,[t(e.$slots,"title",{},()=>[r(d(a.title),1)],!0)]),t(e.$slots,"default",{},void 0,!0)]))}}),u=Object.assign(i(c,[["__scopeId","data-v-aad7bf99"]]),{__name:"Folding"});export{u as default};

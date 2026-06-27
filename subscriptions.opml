@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Olinl Blog的友链订阅</title>
+    <dateCreated>2026-06-09T16:00:00Z</dateCreated>
+    <dateModified>2026-06-27T08:09:53.256+00:00[UTC]</dateModified>
+    <ownerName>顾拾柒</ownerName>
+    <ownerEmail>olinl@foxmail.com</ownerEmail>
+    <ownerId>https://www.olinl.com/</ownerId>
+    <docs>https://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Olinl Blog" type="rss" xmlUrl="https://blog.olinl.com/atom.xml" created="2026-06-09T16:00:00Z" description="分享、实践、学习" htmlUrl="https://blog.olinl.com/"></outline>
+    <outline text="Olinl Blog" type="rss" xmlUrl="https://blog.olinl.com/atom.xml" created="2026-06-09T16:00:00Z" description="分享、实践、学习" htmlUrl="https://blog.olinl.com/"></outline>
+    <outline text="他说" type="rss" xmlUrl="https://090909.top/atom.xml" created="2026-06-22T16:00:00Z" description="梁栋烨的博客网站。" htmlUrl="https://090909.top/"></outline>
+    <outline text="Hyper001’s Blog" type="rss" xmlUrl="https://blog.hyper001.cn/atom.xml" created="2026-06-22T16:00:00Z" description="记录学习，分享生活，保持热爱，奔赴山海。" htmlUrl="https://blog.hyper001.cn/"></outline>
+    <outline text="小枫_QWQ的Blog" type="rss" xmlUrl="https://blog.xiaofengqwq.com/feed/" created="2026-06-22T16:00:00Z" description="欢迎来到小枫_QWQ的Blog！这是一个致力于分享前后端技术的博客。同时也分享一些闲聊碎语" htmlUrl="https://blog.xiaofengqwq.com/"></outline>
+    <outline text="高新炀的小站" type="rss" xmlUrl="https://gxy.cn.mt/rss.xml" created="2026-06-22T16:00:00Z" description="一个装着些稀奇古怪东西的个人小站，欢迎来逛逛~" htmlUrl="https://gxy.cn.mt/"></outline>
+    <outline text="番茄主理人" type="rss" xmlUrl="https://www.fqzlr.com/rss.xml" created="2026-06-22T16:00:00Z" description="坐而言不如起而行." htmlUrl="https://www.fqzlr.com/"></outline>
+    <outline text="MmzMing的知识库" type="rss" xmlUrl="https://tblog.mmzhiku.xyz/rss.xml" created="2026-06-22T16:00:00Z" description="哈基米，南北绿豆" htmlUrl="https://tblog.mmzhiku.xyz/"></outline>
+    <outline text="Hyde Blog" type="rss" xmlUrl="https://seasir.top/rss.xml" created="2026-06-22T16:00:00Z" description="人心中的成见是一座大山" htmlUrl="https://seasir.top/"></outline>
+    <outline text="涵哲子居" type="rss" xmlUrl="https://afipo.top/rss.xml" created="2026-06-22T16:00:00Z" description="天哲地理，共公卿好" htmlUrl="https://afipo.top/"></outline>
+    <outline text="MineDensity" type="rss" xmlUrl="https://www.minedensity.top/rss.xml" created="2026-06-22T16:00:00Z" description="这个网站是我送给互联网的一本手绘笔记。如果你在这里找到了什么让你停留的东西，那我们就已经是朋友了。" htmlUrl="https://www.minedensity.top/"></outline>
+    <outline text="陶然" type="rss" xmlUrl="https://taoran.weppp.cyou/rss.xml" created="2026-06-25T16:00:00Z" description="一团温暖的粘土博客" htmlUrl="https://taoran.weppp.cyou/"></outline>
+  </body>
+</opml>
