@@ -1,8 +1,8 @@
 ---
 title: Docker 部署 Uptime Kuma 监控服务
 description: 使用 Docker Compose 部署 Uptime Kuma 开源监控工具，支持 HTTP、Ping、TCP 等多种监控方式，故障时及时通知。
-date: 2026-10-10 15:16:40
-updated: 2026-06-27 15:16:40
+date: 2025-10-10 15:16:40
+updated: 2025-06-27 15:16:40
 image: # 封面图推荐 2:1，不含与标题重复的文字
 categories: [容器]
 tags: [Docker, 监控, HomeLab]
