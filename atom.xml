@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/assets/atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blog.olinl.com/</id>
+  <title>Olinl Blog</title>
+  <updated>2026-06-30T13:12:00.254+00:00[UTC]</updated>
+  <description>记录技术成长路上的思考与实践，分享编程开发、技术探索和问题解决的心得体会。在这里，你可以找到实用的技术教程、开发经验总结、以及各种有趣的技术发现。让我们一起在代码的世界里不断学习，持续进步。</description>
+  <author>
+    <name>顾拾柒</name>
+    <email>olinl@foxmail.com</email>
+    <uri>https://www.olinl.com/</uri>
+  </author>
+  <link href="https://blog.olinl.com/atom.xml" rel="self"></link>
+  <link href="https://blog.olinl.com/" rel="alternate"></link>
+  <language>zh-CN</language>
+  <generator uri="https://github.com/L33Z22L11/blog-v3" version="3.7.0">Clarity</generator>
+  <icon>https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0</icon>
+  <logo>https://q2.qlogo.cn/headimg_dl?dst_uin=9892214&amp;spec=0</logo>
+  <rights>© 2026 顾拾柒</rights>
+  <subtitle>分享、实践、学习</subtitle>
+  <entry>
+    <id>https://blog.olinl.com/2026/frp-deploy</id>
+    <title>FRP 内网穿透服务部署指南</title>
+    <updated>2026-06-27T07:31:19Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>介绍如何使用 FRP 将内网主机端口通过公网服务器暴露到互联网，包括服务端与客户端的配置及 Systemd 服务管理。</p> <a class="view-full" href="https://blog.olinl.com/2026/frp-deploy" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/frp-deploy"></link>
+    <summary>介绍如何使用 FRP 将内网主机端口通过公网服务器暴露到互联网，包括服务端与客户端的配置及 Systemd 服务管理。</summary>
+    <category term="网络"></category>
+    <published>2026-02-06T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/edgeone-fndocker</id>
+    <title>利用EdgeOne Pages给飞牛容器一个固定域名</title>
+    <updated>2026-06-27T07:16:40Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使用飞牛的Connect服务，提供的临时域名动态反代到EdgeOnePages，为容器提供一个固定域名。</p> <a class="view-full" href="https://blog.olinl.com/2025/edgeone-fndocker" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/edgeone-fndocker"></link>
+    <summary>使用飞牛的Connect服务，提供的临时域名动态反代到EdgeOnePages，为容器提供一个固定域名。</summary>
+    <category term="网络"></category>
+    <published>2025-11-28T07:16:40Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/halo-hao-navigation</id>
+    <title>Halo博客Hao主题添加个人导航页</title>
+    <updated>2026-06-27T07:16:40Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>详解如何在Halo博客中添加个人导航页，包括添加链接、分组、自定义属性等。</p> <a class="view-full" href="https://blog.olinl.com/2025/halo-hao-navigation" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/halo-hao-navigation"></link>
+    <summary>详解如何在Halo博客中添加个人导航页，包括添加链接、分组、自定义属性等。</summary>
+    <category term="服务"></category>
+    <published>2025-11-08T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/immich-deploy</id>
+    <title>Immich 图片管理软件部署备忘录</title>
+    <updated>2026-06-27T07:16:40Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>记录 Immich 自托管照片管理软件的 Docker Compose 部署方式，支持 Intel 核显 OpenVINO 加速，以及中文地理编码和 CLIP 大模型配置。</p> <a class="view-full" href="https://blog.olinl.com/2025/immich-deploy" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/immich-deploy"></link>
+    <summary>记录 Immich 自托管照片管理软件的 Docker Compose 部署方式，支持 Intel 核显 OpenVINO 加速，以及中文地理编码和 CLIP 大模型配置。</summary>
+    <category term="服务"></category>
+    <published>2025-10-08T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/docker-sun-panel</id>
+    <title>Docker 部署 Sun-Panel 导航面板</title>
+    <updated>2026-06-27T07:13:16Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使用 Docker Compose 部署 Sun-Panel 导航面板，适合作为 NAS、服务器首页或浏览器起始页，支持简易 Docker 管理。</p> <a class="view-full" href="https://blog.olinl.com/2025/docker-sun-panel" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/docker-sun-panel"></link>
+    <summary>使用 Docker Compose 部署 Sun-Panel 导航面板，适合作为 NAS、服务器首页或浏览器起始页，支持简易 Docker 管理。</summary>
+    <category term="容器"></category>
+    <published>2025-10-09T07:13:16Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2024/lvm-guide</id>
+    <title>LVM 硬盘工具使用教程</title>
+    <updated>2026-06-27T06:31:01Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>本文详细的介绍了如何使用LVM进行创建分区,扩容分区等操作</p> <a class="view-full" href="https://blog.olinl.com/2024/lvm-guide" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2024/lvm-guide"></link>
+    <summary>本文详细的介绍了如何使用LVM进行创建分区,扩容分区等操作</summary>
+    <category term="系统"></category>
+    <published>2024-09-17T06:31:01Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/docker-private-cert</id>
+    <title>Docker 配置私服自签名证书信任</title>
+    <updated>2026-06-27T06:27:16Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>介绍如何在 Linux 和 Windows 客户端上配置 Docker 信任私有镜像仓库的自签名 SSL 证书，解决拉取推送时的证书验证失败问题。</p> <a class="view-full" href="https://blog.olinl.com/2025/docker-private-cert" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/docker-private-cert"></link>
+    <summary>介绍如何在 Linux 和 Windows 客户端上配置 Docker 信任私有镜像仓库的自签名 SSL 证书，解决拉取推送时的证书验证失败问题。</summary>
+    <category term="容器"></category>
+    <published>2025-09-21T06:27:16Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2024/harbor-install</id>
+    <title>Harbor 私有镜像仓库安装指南</title>
+    <updated>2026-06-27T06:11:19Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使用 Docker Compose 部署 Harbor 私有镜像仓库，包含自签名 SSL 证书生成、YAML 配置、Nginx 反向代理等完整流程。</p> <a class="view-full" href="https://blog.olinl.com/2024/harbor-install" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2024/harbor-install"></link>
+    <summary>使用 Docker Compose 部署 Harbor 私有镜像仓库，包含自签名 SSL 证书生成、YAML 配置、Nginx 反向代理等完整流程。</summary>
+    <category term="服务"></category>
+    <published>2024-07-19T06:11:19Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2024/java-install</id>
+    <title>Linux 手动安装 JDK 1.8 并配置环境变量</title>
+    <updated>2026-06-27T06:11:19Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使通过下载 tar.gz 包手动安装 JDK 1.8，配置 JAVA_HOME 等环境变量，适用于 CentOS、Debian、Ubuntu 等主流发行版。</p> <a class="view-full" href="https://blog.olinl.com/2024/java-install" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2024/java-install"></link>
+    <summary>使通过下载 tar.gz 包手动安装 JDK 1.8，配置 JAVA_HOME 等环境变量，适用于 CentOS、Debian、Ubuntu 等主流发行版。</summary>
+    <category term="服务"></category>
+    <published>2024-06-19T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2022/docker-compose-guide</id>
+    <title>Docker Compose 基础篇</title>
+    <updated>2026-06-27T05:25:00Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>介绍Docker Compose安装方法，以及常用的配置</p> <a class="view-full" href="https://blog.olinl.com/2022/docker-compose-guide" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2022/docker-compose-guide"></link>
+    <summary>介绍Docker Compose安装方法，以及常用的配置</summary>
+    <category term="容器"></category>
+    <published>2022-09-18T05:25:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2022/docker-guide</id>
+    <title>Docker基础篇</title>
+    <updated>2026-06-27T05:25:00Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>介绍Docker安装方法，以及生产环境常用的配置</p> <a class="view-full" href="https://blog.olinl.com/2022/docker-guide" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2022/docker-guide"></link>
+    <summary>介绍Docker安装方法，以及生产环境常用的配置</summary>
+    <category term="容器"></category>
+    <published>2022-09-18T05:25:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/debian-install</id>
+    <title>Debian 13 稳定版安装指南及系统配置</title>
+    <updated>2026-06-27T02:14:30Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>深入讲解 Debian 13 最小化安装与常用服务配置。涵盖 APT 优化与权限管理，助你掌握这款“通用操作系统”的极致稳定方案。</p> <a class="view-full" href="https://blog.olinl.com/2025/debian-install" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/debian-install"></link>
+    <summary>深入讲解 Debian 13 最小化安装与常用服务配置。涵盖 APT 优化与权限管理，助你掌握这款“通用操作系统”的极致稳定方案。</summary>
+    <category term="系统"></category>
+    <published>2025-10-08T02:14:30Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2022/chrony-time-sync</id>
+    <title>Linux 服务器时间同步配置（Chrony）</title>
+    <updated>2026-06-27T02:11:22Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使用 Chrony 工具为 Linux 服务器配置时间同步，支持阿里云、腾讯云等国内 NTP 源及内网 NTP 服务器。</p> <a class="view-full" href="https://blog.olinl.com/2022/chrony-time-sync" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2022/chrony-time-sync"></link>
+    <summary>使用 Chrony 工具为 Linux 服务器配置时间同步，支持阿里云、腾讯云等国内 NTP 源及内网 NTP 服务器。</summary>
+    <category term="系统"></category>
+    <published>2022-05-20T02:11:22Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2022/jar-service-sh</id>
+    <title>Linux 管理 JAR 服务的 Shell 脚本</title>
+    <updated>2026-06-27T02:11:22Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>提供一个开箱即用的 Shell 脚本，用于管理 Java JAR 包服务的启动、停止、重启与状态查看，适合生产环境部署。</p> <a class="view-full" href="https://blog.olinl.com/2022/jar-service-sh" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2022/jar-service-sh"></link>
+    <summary>提供一个开箱即用的 Shell 脚本，用于管理 Java JAR 包服务的启动、停止、重启与状态查看，适合生产环境部署。</summary>
+    <category term="系统"></category>
+    <published>2022-10-20T02:11:22Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/chrome-hardware</id>
+    <title>Chrome硬件加速功能开启与关闭</title>
+    <updated>2026-06-27T02:07:47Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>硬件加速功能可以提高 Chrome 浏览器的性能，但在某些情况下可能会导致问题。本教程将介绍如何打开或关闭 Chrome 硬件加速功能。</p> <a class="view-full" href="https://blog.olinl.com/2025/chrome-hardware" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/chrome-hardware"></link>
+    <summary>硬件加速功能可以提高 Chrome 浏览器的性能，但在某些情况下可能会导致问题。本教程将介绍如何打开或关闭 Chrome 硬件加速功能。</summary>
+    <category term="开发"></category>
+    <published>2025-03-31T02:07:47Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2024/squid-proxy</id>
+    <title>使用 Squid 为内网服务器搭建 HTTP 代理</title>
+    <updated>2026-06-27T01:48:41Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>在有网络的边缘服务器上安装 Squid 代理，让无公网访问的内网机器通过代理完成软件安装与网络请求。</p> <a class="view-full" href="https://blog.olinl.com/2024/squid-proxy" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2024/squid-proxy"></link>
+    <summary>在有网络的边缘服务器上安装 Squid 代理，让无公网访问的内网机器通过代理完成软件安装与网络请求。</summary>
+    <category term="服务"></category>
+    <published>2024-07-20T01:48:41Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2022/centos-all-config</id>
+    <title>「全」CentOS 安装与服务器初始化配置完整指南</title>
+    <updated>2026-06-27T01:20:05Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>详述 CentOS 从零安装、分区到网络与防火墙配置全流程。助你快速构建稳定、安全的生产级 Web 服务器环境。</p> <a class="view-full" href="https://blog.olinl.com/2022/centos-all-config" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2022/centos-all-config"></link>
+    <summary>详述 CentOS 从零安装、分区到网络与防火墙配置全流程。助你快速构建稳定、安全的生产级 Web 服务器环境。</summary>
+    <category term="系统"></category>
+    <published>2022-04-13T00:47:07Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/basic-auth-auto-login-bypass</id>
+    <title>跳过登录弹框：实现 Basic Auth 自动授权</title>
+    <updated>2026-06-27T01:08:39Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[<img src="https://oss.olinl.com/cover/basic-auth-auto-login-bypass.webp" alt="跳过登录弹框：实现 Basic Auth 自动授权" /> <p>详解如何通过 URL 传参、Nginx 反向代理注入 Header 以及浏览器插件等方式，实现对 Basic Auth 认证站点的免密自动登录。</p> <a class="view-full" href="https://blog.olinl.com/2026/basic-auth-auto-login-bypass" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/basic-auth-auto-login-bypass"></link>
+    <summary>详解如何通过 URL 传参、Nginx 反向代理注入 Header 以及浏览器插件等方式，实现对 Basic Auth 认证站点的免密自动登录。</summary>
+    <category term="网络"></category>
+    <published>2026-01-02T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/alpine-install</id>
+    <title>Alpine Linux 极简安装流程与生产环境轻量化配置</title>
+    <updated>2026-06-27T00:49:55Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>追求极致轻量？本文带你快速上手 Alpine Linux 安装与 APK 包管理，教你如何配置资源占用极低的微服务生产环境。</p> <a class="view-full" href="https://blog.olinl.com/2026/alpine-install" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/alpine-install"></link>
+    <summary>追求极致轻量？本文带你快速上手 Alpine Linux 安装与 APK 包管理，教你如何配置资源占用极低的微服务生产环境。</summary>
+    <category term="系统"></category>
+    <published>2026-02-28T16:00:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/qq-group</id>
+    <title>欢迎加入 Olinl 的 QQ 交流群 🎉</title>
+    <updated>2026-06-24T15:58:21Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[<img src="https://oss.olinl.com/cover/qq-group-1.webp" alt="欢迎加入 Olinl 的 QQ 交流群 🎉" /> <p>一个人走得快，一群人走得远。</p> <a class="view-full" href="https://blog.olinl.com/2026/qq-group" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/qq-group"></link>
+    <summary>一个人走得快，一群人走得远。</summary>
+    <category term="杂项"></category>
+    <published>2026-06-24T15:58:21Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/less-blog</id>
+    <title>迁移多次网站后，我回归了博客的本质</title>
+    <updated>2026-06-23T12:13:26Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[<img src="https://oss.olinl.com/cover/less-blog.webp" alt="迁移多次网站后，我回归了博客的本质" /> <p>经历了多次网站迁移与折腾，我最终领悟到博客最纯粹的价值：写文章，看文章。本文分享我如何从追逐花哨功能，回归到以SSG为核心的极简理</p> <a class="view-full" href="https://blog.olinl.com/2026/less-blog" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/less-blog"></link>
+    <summary>经历了多次网站迁移与折腾，我最终领悟到博客最纯粹的价值：写文章，看文章。本文分享我如何从追逐花哨功能，回归到以SSG为核心的极简理</summary>
+    <category term="杂项"></category>
+    <published>2026-06-23T12:13:26Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/cf-fastip</id>
+    <title>使用CloudFlare优选任何网站！</title>
+    <updated>2026-06-21T08:57:55Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[<img src="https://oss.olinl.com/cover/cf-fastip.webp" alt="使用CloudFlare优选任何网站！" /> <p>通过 Worker 反代为网站做 IP 分流优选，提高国内访问速度与可用性</p> <a class="view-full" href="https://blog.olinl.com/2026/cf-fastip" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/cf-fastip"></link>
+    <summary>通过 Worker 反代为网站做 IP 分流优选，提高国内访问速度与可用性</summary>
+    <category term="网络"></category>
+    <published>2026-06-13T11:54:38Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2026/firefly-first</id>
+    <title>「迁」Firefly 博客部署教程</title>
+    <updated>2026-06-18T10:45:13Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[<img src="https://oss.olinl.com/cover/firefly-first.webp" alt="「迁」Firefly 博客部署教程" /> <p>手把手带你搭建一个静态的博客网站。</p> <a class="view-full" href="https://blog.olinl.com/2026/firefly-first" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2026/firefly-first"></link>
+    <summary>手把手带你搭建一个静态的博客网站。</summary>
+    <category term="教程"></category>
+    <published>2026-06-12T07:46:00Z</published>
+  </entry>
+  <entry>
+    <id>https://blog.olinl.com/2025/docker-uptime-kuma</id>
+    <title>Docker 部署 Uptime Kuma 监控服务</title>
+    <updated>2025-06-27T07:16:40Z</updated>
+    <author>
+      <name>顾拾柒</name>
+    </author>
+    <content type="html">
+      <![CDATA[ <p>使用 Docker Compose 部署 Uptime Kuma 开源监控工具，支持 HTTP、Ping、TCP 等多种监控方式，故障时及时通知。</p> <a class="view-full" href="https://blog.olinl.com/2025/docker-uptime-kuma" target="_blank">点击查看全文</a>]]>
+    </content>
+    <link href="https://blog.olinl.com/2025/docker-uptime-kuma"></link>
+    <summary>使用 Docker Compose 部署 Uptime Kuma 开源监控工具，支持 HTTP、Ping、TCP 等多种监控方式，故障时及时通知。</summary>
+    <category term="容器"></category>
+    <published>2025-10-10T07:16:40Z</published>
+  </entry>
+</feed>
