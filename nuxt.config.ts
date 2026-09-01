@@ -61,6 +61,7 @@ export default defineNuxtConfig({
 		'@/assets/css/color.scss',
 		'@/assets/css/font.scss',
 		'@/assets/css/main.scss',
+		'@/assets/css/mouse.scss',
 		'@/assets/css/reusable.scss',
 	],
 
