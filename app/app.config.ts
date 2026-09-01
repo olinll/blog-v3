@@ -103,9 +103,9 @@ export default defineAppConfig({
 	/** 友链页面 */
 	link: {
 		/** 无订阅源展示静音图标 */
-		remindNoFeed: true,
+		remindNoFeed: false,
 		/** 友链分组内随机排序 */
-		randomInGroup: true,
+		randomInGroup: false,
 	},
 
 	/** 左侧栏导航 */

@@ -87,8 +87,8 @@ const blogConfig = {
 
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
-		envId: 'https://twikoo.example.site/',
-		preload: 'https://twikoo.example.site/',
+		envId: 'https://twikoo.olinl.com/',
+		preload: 'https://twikoo.olinl.com/',
 	},
 }
 
