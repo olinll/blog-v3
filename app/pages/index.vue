@@ -8,7 +8,11 @@ useSeoMeta({
 })
 
 const { data: listRaw } = await useAsyncData('posts:index', () => getArticleIndexOptions(), { default: () => [] })
-const { listSorted, isAscending, sortOrder } = useArticleSort(listRaw, { bindDirectionQuery: 'asc', bindOrderQuery: 'sort' })
+const { listSorted, isAscending, sortOrder } = useArticleSort(listRaw, {
+	bindDirectionQuery: 'asc',
+	bindOrderQuery: 'sort',
+	pinFirst: true,
+})
 const { category, categories, listCategorized } = useCategory(listSorted, { bindQuery: 'category' })
 const { page, totalPages, listPaged } = usePagination(listCategorized, { bindQuery: 'page' })
 

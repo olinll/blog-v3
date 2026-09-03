@@ -26,7 +26,7 @@ export function useArticle(path?: MaybeRefOrGetter<string | undefined>) {
 export function getArticleIndexOptions(path = 'posts/%') {
 	return queryCollection('content')
 		.where('stem', 'LIKE', path)
-		.select('categories', 'date', 'description', 'image', 'path', 'readingTime', 'recommend', 'tags', 'title', 'type', 'updated')
+		.select('categories', 'date', 'description', 'image', 'path', 'pinned', 'readingTime', 'recommend', 'tags', 'title', 'type', 'updated')
 		.all()
 }
 
@@ -61,6 +61,7 @@ interface UseArticleSortOptions {
 	bindOrderQuery?: string
 	initialAscend?: boolean
 	initialOrder?: ArticleOrderType
+	pinFirst?: boolean
 }
 
 export function useArticleSort(list: MaybeRefOrGetter<ArticleProps[]>, options?: UseArticleSortOptions) {
@@ -70,6 +71,7 @@ export function useArticleSort(list: MaybeRefOrGetter<ArticleProps[]>, options?:
 		bindOrderQuery,
 		initialAscend = false,
 		initialOrder = appConfig.pagination.sortOrder || 'date',
+		pinFirst = false,
 	} = options || {}
 
 	const sortOrder = bindOrderQuery
@@ -85,11 +87,12 @@ export function useArticleSort(list: MaybeRefOrGetter<ArticleProps[]>, options?:
 		? useRouteQuery(bindDirectionQuery, initialAscend.toString(), { transform: booleanQueryTransformer })
 		: ref<boolean>(initialAscend)
 
-	const listSorted = computed(() => orderBy(
-		toValue(list),
-		[sortOrder.value, 'date'],
-		[isAscending.value ? 'asc' : 'desc'],
-	))
+	const listSorted = computed(() => {
+		const direction = isAscending.value ? 'asc' : 'desc'
+		return pinFirst
+			? orderBy(toValue(list), ['pinned', sortOrder.value, 'date'], ['desc', direction, direction])
+			: orderBy(toValue(list), [sortOrder.value, 'date'], [direction, direction])
+	})
 
 	return {
 		sortOrder,

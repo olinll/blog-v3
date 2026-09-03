@@ -19,6 +19,7 @@ export interface ArticleSchema {
 	type?: ArticleType
 
 	image?: string
+	pinned?: boolean
 	recommend?: number
 	references?: { title?: string, link?: string }[]
 	/** TODO */
@@ -39,6 +40,7 @@ const articleSchema = z.object({
 	type: z.enum(articleTypes).optional().default(articleTypes[0]),
 
 	image: z.string().optional(),
+	pinned: z.boolean().default(false),
 	recommend: z.number().optional(),
 	references: z.array(z.object({
 		title: z.string().optional(),
