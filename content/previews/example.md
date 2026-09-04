@@ -556,7 +556,7 @@ pyftsubset ./AlimamaFangYuanTi.ttf --text=Header文本 --flavor=woff2
   - 无序列表项2-1
     - 无序列表项2-1-1
   - 无序列表项2-2
-::
+  ::
 
 #tab2
 ```mdc
@@ -680,7 +680,7 @@ pyftsubset ./AlimamaFangYuanTi.ttf --text=Header文本 --flavor=woff2
 
     ::folding{open title="折叠还可以嵌套"}
     默认展开的折叠。
-
+    
       ::alert{type="error"}
       #title
       在嵌套使用的组件内部使用 MDC 的 `#slotname` 插槽语法
