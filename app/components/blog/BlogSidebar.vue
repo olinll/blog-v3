@@ -40,6 +40,14 @@ const debouncedSelection = refDebounced(text)
 				</li>
 			</menu>
 		</template>
+
+		<section class="sidebar-notice" aria-label="重构公告">
+			<div class="sidebar-notice-title">
+				<Icon name="tabler:tools" />
+				<strong>博客正在重构</strong>
+			</div>
+			<p>部分页面、链接与文章仍在整理，内容可能随时调整。</p>
+		</section>
 	</nav>
 
 	<footer class="sidebar-footer">
@@ -144,6 +152,30 @@ const debouncedSelection = refDebounced(text)
 		opacity: 1;
 		outline-color: transparent;
 		background-color: transparent;
+	}
+}
+
+.sidebar-notice {
+	margin-top: 1rem;
+	padding: 0.7em 0.9em;
+	border-radius: 0.5em;
+	background-color: var(--c-bg-2);
+	font-size: 0.8em;
+
+	.sidebar-notice-title {
+		display: flex;
+		align-items: center;
+		gap: 0.45em;
+		color: var(--c-primary);
+
+		> .iconify {
+			font-size: 1.2em;
+		}
+	}
+
+	p {
+		margin: 0.45em 0 0;
+		line-height: 1.6;
 	}
 }
 

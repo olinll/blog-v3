@@ -28,4 +28,3 @@ logs
 content/posts/test.md
 __pycache__/
 *.pyc
-.gitignore
