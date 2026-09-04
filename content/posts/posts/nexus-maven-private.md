@@ -16,11 +16,11 @@ tags: [Nexus, Maven, 私服]
 
 ::alert{type="info" title="安装前提"}
 
-最新版本要求内存 **大于 4G**，JDK **最低 1.8**。不满足条件将无法正常启动。尚未安装 JDK？参见：[Linux 手动安装 JDK 1.8](/posts/jdk-install///)
+最新版本要求内存 **大于 4G**，JDK **最低 1.8**。不满足条件将无法正常启动。尚未安装 JDK？参见：[Linux 手动安装 JDK 1.8](/posts/jdk-install)
 
 ::
 
-> 尚未安装 Maven？参见 [Linux 安装 Maven 并配置私服镜像](/posts/maven-install///)
+> 尚未安装 Maven？参见 [Linux 安装 Maven 并配置私服镜像](/posts/maven-install)
 
 ## 一、下载安装
 

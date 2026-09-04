@@ -184,7 +184,7 @@ yum update -y
 
 此操作可以借助lvm2工具，详细操作见另一篇文章：
 
-[Olinl Blog - LVM 硬盘工具使用教程](/posts/lvm-setup///)
+[Olinl Blog - LVM 硬盘工具使用教程](/posts/lvm-setup)
 
 ### 4. 配置 SELinux
 

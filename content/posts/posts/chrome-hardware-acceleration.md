@@ -30,7 +30,7 @@ Chrome 浏览器的「硬件加速」功能通过利用计算机的 GPU 来提�
 
 如果 Chrome 硬件加速没有如预期那样发挥作用，可以尝试覆盖内置的软件渲染列表，在不受支持的系统上强制启用 GPU 加速：
 
-1. 打开 Google Chrome 浏览器，在地址栏中执行 <chrome://flags/#ignore-gpu-blocklist>，
+1. 打开 Google Chrome 浏览器，在地址栏中执行 `chrome://flags/#ignore-gpu-blocklist`，
 2. 将「Override software rendering list」设置为「Enable」启用状态。
 3. 点击「Relaunch」重启 Chrome 浏览器。该选项可以忽略 Chrome 默认的 GPU 黑名单，从而在某些不被推荐的系统上强制启用 GPU 加速。
 

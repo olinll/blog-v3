@@ -14,7 +14,7 @@ tags: [Docker, Harbor, SSL]
 
 在内网部署私有镜像仓库（如 Harbor）时，通常使用自签名证书。客户端需要手动信任该证书，否则 `docker push` / `docker pull` 会报证书验证失败。
 
-> 如果你使用 Harbor 作为私服，参见 [Harbor 私有镜像仓库安装指南](/posts/harbor-install///)
+> 如果你使用 Harbor 作为私服，参见 [Harbor 私有镜像仓库安装指南](/posts/harbor-install)
 
 ## Linux
 

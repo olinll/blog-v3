@@ -3,7 +3,6 @@ title: 迁移多次网站后，我回归了博客的本质
 date: 2026-06-23 20:13:26
 updated: 2026-06-23 20:13:26
 description: 经历了多次网站迁移与折腾，我最终领悟到博客最纯粹的价值：写文章，看文章。本文分享我如何从追逐花哨功能，回归到以SSG为核心的极简理
-image: api
 categories: [杂项]
 tags: [博客, SSG]
 draft: false

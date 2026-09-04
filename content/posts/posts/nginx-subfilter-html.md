@@ -35,7 +35,7 @@ nginx -V 2>&1 | grep sub_filter
 ::link-card
 ---
 title: Docker 部署 Uptime Kuma 监控
-link: /posts/202x/docker-uptime-kuma/
+link: /posts/docker-uptime-kuma
 ---
 ::
 

@@ -36,7 +36,7 @@ timedatectl status
 
 ::alert{type="info"}
 
-K8s 集群使用 Harbor 作为私有镜像仓库，安装参见：[Harbor 私有镜像仓库安装指南](/posts/harbor-install///)
+K8s 集群使用 Harbor 作为私有镜像仓库，安装参见：[Harbor 私有镜像仓库安装指南](/posts/harbor-install)
 
 ::
 
@@ -75,13 +75,13 @@ systemctl enable --now minio
 systemctl status minio
 ```
 
-详细安装步骤参见：[MinIO 安装指南](/posts/minio-install///)
+详细安装步骤参见：[MinIO 安装指南](/posts/minio-install)
 
 ## 6. 搭建 Redis 集群（3 主 3 从）
 
 ::alert{type="info"}
 
-单机 Redis 编译安装参见：[CentOS 编译安装 Redis 6.2](/posts/centos-redis-install///)
+单机 Redis 编译安装参见：[CentOS 编译安装 Redis 6.2](/posts/centos-redis-install)
 
 ::
 
@@ -106,7 +106,7 @@ redis-cli -c -h node1 -p 7001 -a your-password cluster nodes
 
 ::alert{type="info"}
 
-更详细的 MySQL 8.1 安装配置（含外部访问、数据目录迁移）参见：[Ubuntu MySQL 8.1 安装指南](/posts/ubuntu-mysql-81///)
+更详细的 MySQL 8.1 安装配置（含外部访问、数据目录迁移）参见：[Ubuntu MySQL 8.1 安装指南](/posts/ubuntu-mysql-81)
 
 ::
 

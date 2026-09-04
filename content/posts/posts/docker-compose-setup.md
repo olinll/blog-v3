@@ -57,4 +57,4 @@ cker-compose version 1.24.1, build 4667896b
 由于新版的Compose工具集成在Docker的Ctl里面，所以只需正常安装Docker后使用即可，下面是常见的Linux发行版的Docker安装方式：
 
 - 「**通用**」：轩辕镜像站一键安装脚本：`bash <(wget -qO- https://xuanyuan.cloud/docker.sh)`
-- [Docker 安装与配置指南（CentOS / Ubuntu / Alpine）](/posts/docker-guide///)
+- [Docker 安装与配置指南（CentOS / Ubuntu / Alpine）](/posts/docker-guide)

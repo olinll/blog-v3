@@ -14,7 +14,7 @@ tags: [PVE, Homelab, 虚拟化, 核显]
 
 PCIe 直通（Passthrough）将物理显卡独占分配给单个虚拟机，虚拟机获得接近裸机的 GPU 性能。与 GVT-g 共享模式不同，直通后宿主机无法使用该显卡。
 
-> 相关文章：[PVE 9.0 安装与初始配置指南](/posts/pve9-install-guide///) · [PVE Intel 核显 GVT-g 虚拟化教程（共享模式）](/posts/pve-gvtg-passthrough///)
+> 相关文章：[PVE 9.0 安装与初始配置指南](/posts/pve9-install-guide) · [PVE Intel 核显 GVT-g 虚拟化教程（共享模式）](/posts/pve-gvtg-passthrough)
 
 ## 一、查看 IOMMU 分组
 

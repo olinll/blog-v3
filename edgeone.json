@@ -23,7 +23,7 @@
     {
       "destination": "https://www.zhilu.site/api/icon",
       "source": "/favicon.ico",
-      "status": 308
+      "statusCode": 308
     }
   ]
 }

@@ -98,7 +98,7 @@ extension=ixed.8.2.lin
 
 ::alert{type="info"}
 
-Nginx 配置参见：[Nginx 安装与配置指南](/posts/nginx-guide///)
+Nginx 配置参见：[Nginx 安装与配置指南](/posts/nginx-guide)
 
 ::
 

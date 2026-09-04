@@ -220,12 +220,11 @@ ${packageJson.homepage}
 	},
 
 	image: {
+		// 迁移文章保留相对图片引用，避免构建时由 IPX 请求未迁入的本地文件。
+		provider: 'none',
 		// 尽量以这些密度点对点显示
 		densities: [1, 1.5, 2],
 		format: ['avif', 'webp'],
-		// Neylify 下 netlify 处理器无法显示站外图片，ipx 处理器无法显示站内图片，需彻底禁用
-		// https://github.com/nuxt/image/issues/1353
-		provider: NETLIFY ? 'none' : undefined,
 	},
 
 	linkChecker: {

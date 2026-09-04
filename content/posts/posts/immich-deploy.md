@@ -18,7 +18,7 @@ Immich 是一款自托管照片和视频管理软件，支持 Web、Android、iO
 
 ::alert{type="info"}
 
-Immich 使用 PostgreSQL 作为数据库，如需独立部署参见：[Ubuntu 安装 PostgreSQL 与常用配置](/posts/postgresql-install///)
+Immich 使用 PostgreSQL 作为数据库，如需独立部署参见：[Ubuntu 安装 PostgreSQL 与常用配置](/posts/postgresql-install)
 
 ::
 

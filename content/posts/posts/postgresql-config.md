@@ -20,7 +20,7 @@ type: tech
 > ::link-card
 > ---
 > title: PostgreSQL 安装指南
-> link: /posts/202x/postgresql-install/
+> link: /posts/postgresql-install
 > ---
 > ::
 

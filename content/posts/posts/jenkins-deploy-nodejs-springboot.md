@@ -99,8 +99,8 @@ https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.xz
 
 如需手动安装 JDK 或 Maven 并配置环境变量，参见：
 
-- [Linux 手动安装 JDK 1.8](/posts/jdk-install///)
-- [Linux 安装 Maven 并配置私服镜像](/posts/maven-install///)
+- [Linux 手动安装 JDK 1.8](/posts/jdk-install)
+- [Linux 安装 Maven 并配置私服镜像](/posts/maven-install)
 ::
 
 配置完成后效果如下：

@@ -14,7 +14,7 @@ tags: [FRP, 内网穿透, HomeLab]
 
 ::alert{type="info"}
 
-服务端需要一台有公网 IP 的服务器，尚未初始化服务器？参见：[Linux 服务器初始化配置](/posts/server-init///)
+服务端需要一台有公网 IP 的服务器，尚未初始化服务器？参见：[Linux 服务器初始化配置](/posts/server-init)
 
 ::
 

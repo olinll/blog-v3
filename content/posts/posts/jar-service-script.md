@@ -14,7 +14,7 @@ tags: [Linux, 运维, Shell, Java]
 
 在生产环境中直接用 `java -jar` 启动服务不便管理，以下脚本封装了 start / stop / restart / status 四个操作，支持后台运行。
 
-> 尚未安装 JDK？参见 [Linux 手动安装 JDK 1.8 并配置环境变量](/posts/jdk-install///)
+> 尚未安装 JDK？参见 [Linux 手动安装 JDK 1.8 并配置环境变量](/posts/jdk-install)
 
 ## 使用方法
 

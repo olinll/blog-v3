@@ -49,7 +49,7 @@ TrueNAS 只会 Graphite（推送模型），Prometheus 只认 HTTP pull（拉取
 
 ::alert{type="info"}
 
-Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup///)
+Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup)
 
 ::
 

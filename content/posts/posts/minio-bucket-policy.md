@@ -29,7 +29,7 @@ type: tech
 > ::link-card
 > ---
 > title: MinIO 对象存储安装指南
-> link: /posts/202x/minio-install/
+> link: /posts/minio-install
 > ---
 > ::
 

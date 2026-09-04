@@ -14,7 +14,7 @@ tags: [Squid, 代理, 网络]
 
 ::alert{type="info"}
 
-Squid 通常部署在已完成初始化的 CentOS 服务器上，初始化步骤参见：[CentOS 安装与初始化配置](/posts/centos-install-config///)
+Squid 通常部署在已完成初始化的 CentOS 服务器上，初始化步骤参见：[CentOS 安装与初始化配置](/posts/centos-install-config)
 
 ::
 

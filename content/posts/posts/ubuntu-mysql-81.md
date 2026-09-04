@@ -162,6 +162,6 @@ mysql -uroot -p -e "show variables like '%datadir%';"
 
 ::alert{type="tip"}
 
-安装完成后，建议使用 XtraBackup 定期备份数据库：[XtraBackup 备份与恢复](/posts/xtrabackup-backup///)
+安装完成后，建议使用 XtraBackup 定期备份数据库：[XtraBackup 备份与恢复](/posts/xtrabackup-backup)
 
 ::

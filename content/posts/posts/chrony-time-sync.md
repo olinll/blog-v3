@@ -14,7 +14,7 @@ tags: [Linux, 时间同步, 运维]
 
 ::alert{type="info"}
 
-时间同步是服务器初始化的基础步骤之一，完整初始化流程参见：[CentOS 安装与初始化配置](/posts/centos-install-config///)
+时间同步是服务器初始化的基础步骤之一，完整初始化流程参见：[CentOS 安装与初始化配置](/posts/centos-install-config)
 
 ::
 

@@ -57,7 +57,7 @@ networks:
 
 ::alert{type="info"}
 
-尚未部署 MinIO？参见：[MinIO 对象存储安装指南](/posts/minio-install///)
+尚未部署 MinIO？参见：[MinIO 对象存储安装指南](/posts/minio-install)
 
 ::
 

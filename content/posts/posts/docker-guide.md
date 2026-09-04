@@ -130,7 +130,7 @@ rc-service docker restart
 
 ::alert{type="tip"}
 
-Docker Compose 的安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup///)，YML 编写参见：[Docker Compose YML 编写](/posts/docker-compose-yml///)
+Docker Compose 的安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup)，YML 编写参见：[Docker Compose YML 编写](/posts/docker-compose-yml)
 
 ::
 
@@ -225,7 +225,7 @@ echo "日志清理完成"
 
 ::alert{type="info"}
 
-如需搭建私有镜像仓库，参见：[Harbor 私有镜像仓库安装指南](/posts/harbor-install///)。使用自签名证书时还需配置信任：[Docker 配置私服自签名证书信任](/posts/docker-private-cert///)
+如需搭建私有镜像仓库，参见：[Harbor 私有镜像仓库安装指南](/posts/harbor-install)。使用自签名证书时还需配置信任：[Docker 配置私服自签名证书信任](/posts/docker-private-cert)
 
 ::
 

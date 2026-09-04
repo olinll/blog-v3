@@ -14,7 +14,7 @@ tags: [MySQL, 备份, 运维]
 
 Xtrabackup 是 Percona 公司开发的 MySQL 开源热备份工具，支持在不停止数据库服务的情况下进行全量和增量备份。
 
-> 相关文章：[CentOS 安装 MySQL 5.7 完整指南](/posts/centos-mysql-57///) · [Ubuntu 安装 MySQL 8.1 完整指南](/posts/ubuntu-mysql-81///)
+> 相关文章：[CentOS 安装 MySQL 5.7 完整指南](/posts/centos-mysql-57) · [Ubuntu 安装 MySQL 8.1 完整指南](/posts/ubuntu-mysql-81)
 
 ## 一、安装
 

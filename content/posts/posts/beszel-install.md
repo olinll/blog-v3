@@ -22,7 +22,7 @@ Beszel 是一款服务监控程序，分为 **Hub（管理端）** 和 **Agent�
 
 ::alert{type="info"}
 
-Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup///)
+Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup)
 
 ::
 

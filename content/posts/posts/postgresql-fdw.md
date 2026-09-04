@@ -22,14 +22,14 @@ PostgreSQL 不支持跨库查询，可通过 **Foreign Data Wrapper（FDW）** �
 > ::link-card
 > ---
 > title: PostgreSQL 安装指南
-> link: /posts/202x/postgresql-install/
+> link: /posts/postgresql-install
 > ---
 > ::
 >
 > ::link-card
 > ---
 > title: PostgreSQL 远程访问与数据目录迁移
-> link: /posts/202x/postgresql-config/
+> link: /posts/postgresql-config
 > ---
 > ::
 

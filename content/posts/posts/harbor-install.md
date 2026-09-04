@@ -16,7 +16,7 @@ Harbor 是一个开源镜像仓库，通过策略和基于角色的访问控制�
 
 ::alert{type="info"}
 
-客户端配置证书信任参见 [Docker 配置私服自签名证书信任](/posts/docker-private-cert///)。
+客户端配置证书信任参见 [Docker 配置私服自签名证书信任](/posts/docker-private-cert)。
 
 本文统一使用 `harbor.local` 作为示例域名、`192.168.2.11` 作为示例服务器 IP。实际部署请替换为你自己的值，**各处保持完全一致**（证书 CN / Docker certs.d 目录名 / hosts 映射 / Nginx server_name 等）。
 
@@ -26,9 +26,9 @@ Harbor 是一个开源镜像仓库，通过策略和基于角色的访问控制�
 
 ::alert{type="info"}
 
-尚未安装 Docker？参见：[Docker 安装与配置指南](/posts/docker-guide///)
+尚未安装 Docker？参见：[Docker 安装与配置指南](/posts/docker-guide)
 
-Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup///)
+Docker Compose 安装与使用参见：[Docker Compose 安装配置](/posts/docker-compose-setup)
 
 ::
 

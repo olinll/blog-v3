@@ -80,7 +80,7 @@ mvn -version
 
 ::alert{type="info"}
 
-尚未搭建 Nexus 私服？参见：[Linux 搭建 Nexus Maven 私服完整指南](/posts/nexus-maven-private///)
+尚未搭建 Nexus 私服？参见：[Linux 搭建 Nexus Maven 私服完整指南](/posts/nexus-maven-private)
 
 ::
 

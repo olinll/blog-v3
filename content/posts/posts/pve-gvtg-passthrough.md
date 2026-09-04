@@ -18,11 +18,11 @@ GVT-g（Intel Graphics Virtualization Technology - g）是 Intel 提供的轻量
 
 **支持范围：** Intel Broadwell（5代）到 Comet Lake（10代），不支持 Ice Lake（10代移动处理器）。
 
-> 需要独占直通？参见 [PVE Intel 核显独占直通教程](/posts/pve-gpu-passthrough///)
+> 需要独占直通？参见 [PVE Intel 核显独占直通教程](/posts/pve-gpu-passthrough)
 
 ::alert{type="info"}
 
-Intel 11 代及以上请使用 SR-IOV 方案，参见 [PVE 9.0 安装与初始配置指南](/posts/pve9-install-guide///)。
+Intel 11 代及以上请使用 SR-IOV 方案，参见 [PVE 9.0 安装与初始配置指南](/posts/pve9-install-guide)。
 
 ::
 

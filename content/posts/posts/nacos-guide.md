@@ -52,7 +52,7 @@ sh /opt/nacos/bin/startup.sh -m standalone
 
 ::alert{type="info"}
 
-尚未安装 MySQL？参见：[CentOS MySQL 5.7 安装](/posts/centos-mysql-57///) 或 [Ubuntu MySQL 8.1 安装](/posts/ubuntu-mysql-81///)
+尚未安装 MySQL？参见：[CentOS MySQL 5.7 安装](/posts/centos-mysql-57) 或 [Ubuntu MySQL 8.1 安装](/posts/ubuntu-mysql-81)
 
 ::
 

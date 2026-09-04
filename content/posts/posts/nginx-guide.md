@@ -100,7 +100,7 @@ nginx -V 2>&1 | grep sub_filter
 
 ::alert{type="tip"}
 
-尚未部署 Uptime Kuma？参见：[Docker 部署 Uptime Kuma 监控](/posts/docker-uptime-kuma///)
+尚未部署 Uptime Kuma？参见：[Docker 部署 Uptime Kuma 监控](/posts/docker-uptime-kuma)
 
 ::
 
@@ -275,7 +275,7 @@ server {
 
 ## 八、TCP 流量转发（stream 模块）
 
-适用于转发 MySQL、Redis 等 TCP 服务。`stream` 块与 `http` 块同级。以 MySQL 为例（安装参见 [CentOS MySQL 5.7 安装](/posts/centos-mysql-57///)）：
+适用于转发 MySQL、Redis 等 TCP 服务。`stream` 块与 `http` 块同级。以 MySQL 为例（安装参见 [CentOS MySQL 5.7 安装](/posts/centos-mysql-57)）：
 
 ```nginx [/opt/nginx/server/mysql.conf]
 upstream mysql3306 {
@@ -305,7 +305,7 @@ nginx -V 2>&1 | grep with-stream
 
 ::alert{type="info"}
 
-尚未部署 MinIO？参见：[MinIO 对象存储安装指南](/posts/minio-install///)
+尚未部署 MinIO？参见：[MinIO 对象存储安装指南](/posts/minio-install)
 
 ::
 

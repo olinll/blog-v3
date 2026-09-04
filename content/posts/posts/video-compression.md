@@ -71,7 +71,7 @@ duration=37877.100000
 
 访问 FFmpeg [官网下载](https://ffmpeg.org/download.html)页面，选择适合你操作系统的版本:
 
-Windows用户：选择"Windows builds by [gyan.dev](gyan.dev)"或"[BtbN](https://github.com/BtbN/FFmpeg-Builds/releases)"版本，下载压缩包
+Windows用户：选择"Windows builds by [gyan.dev](https://gyan.dev)"或"[BtbN](https://github.com/BtbN/FFmpeg-Builds/releases)"版本，下载压缩包
 
 macOS用户：可以用Homebrew安装 brew install ffmpeg
 
