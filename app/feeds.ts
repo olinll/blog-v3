@@ -437,6 +437,17 @@ export default [
 				archs: ['Astro', 'Cloudflare'],
 				date: '2026-08-20',
 			},
+			{
+				author: 'Lin',
+				title: 'Lin Blog',
+				desc: '记录技术、互联网与日常观察',
+				link: 'https://linlog.top',
+				// feed: 'https://linlog.top/rss.xml',
+				icon: 'https://linlog.top/api/uploads/2026/09/1788411216332767920-dca59196a965c5e8.jpg',
+				avatar: 'https://linlog.top/api/uploads/2026/09/1788411216332767920-dca59196a965c5e8.jpg',
+				archs: ['Cloudflare'],
+				date: '2026-09-03',
+			},
 			// {
 			// 	author: 'isYangs',
 			// 	desc: '一个前端Bug构造师的博客',
