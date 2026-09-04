@@ -24,6 +24,11 @@
       "destination": "https://www.zhilu.site/api/icon",
       "source": "/favicon.ico",
       "statusCode": 308
+    },
+    {
+      "destination": "/atom.xml",
+      "source": "/rss.xml",
+      "statusCode": 308
     }
   ]
 }
