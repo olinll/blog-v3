@@ -20,7 +20,7 @@ const basicConfig = {
 	language: 'zh-CN',
 	timeEstablished: '2026-06-10',
 	timeZone: 'Asia/Shanghai',
-	url: 'https://blog.olinl.com/',
+	url: 'https://nuxt.olinl.com/',
 	defaultCategory: '未分类',
 }
 
