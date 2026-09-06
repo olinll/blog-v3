@@ -41,12 +41,12 @@ const debouncedSelection = refDebounced(text)
 			</menu>
 		</template>
 
-		<section class="sidebar-notice" aria-label="重构公告">
+		<section class="sidebar-notice" aria-label="迁移公告">
 			<div class="sidebar-notice-title">
 				<Icon name="tabler:tools" />
-				<strong>博客正在重构</strong>
+				<strong>博客正在迁移</strong>
 			</div>
-			<p>部分页面、链接与文章仍在整理，内容可能随时调整。</p>
+			<p>部分页面、链接与文章仍在整理，内容可能随时调整。现目前评论功能无法正常使用</p>
 		</section>
 	</nav>
 
